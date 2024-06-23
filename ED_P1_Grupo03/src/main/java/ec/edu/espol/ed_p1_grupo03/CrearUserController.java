@@ -20,54 +20,62 @@ import javafx.scene.text.Text;
  *
  * @author RUCO HOUSE
  */
-public class InicioController implements Initializable {
+public class CrearUserController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    
-    @FXML
+        @FXML
     private TextField usuario;
 
     @FXML
     private PasswordField contra;
+    
+    @FXML
+    private PasswordField contra2;
 
     @FXML
-    private Text crear;
+    private Text volver;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        crear.setOnMouseClicked(event -> {
+        volver.setOnMouseClicked(event -> {
             try {
-                crearLink(event);
+                volverLink(event);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
     }  
     @FXML
-    private void iniciar(ActionEvent event) {
+   private void crearuser(ActionEvent event) throws IOException {
         String user = usuario.getText();
         String con = contra.getText();
-
+        String con2 = contra2.getText();
         
-        if (validarinicio(user, con)) {
-            System.out.println("Usuario valido");
-            
+        if(!con.equals(con2)){
+            contra2.clear();
+            System.out.println("No coinciden las contraseñas");
+            return;
+        }
+        
+        if (validarcrearuser(user)) {
+            System.out.println("Usuario creado");
+            App.setRoot("Inicio");
         } else {
-            System.out.println("Usuario o contraseña no valida");
-            
+            System.out.println("Nombre de usuario ya ocupado");
+            return;
         }
     }
     
 
-    private boolean validarinicio(String usuario, String contra) {
+    private boolean validarcrearuser(String user) {
         
         return true;
     }
 
     @FXML
-    void crearLink(MouseEvent event) throws IOException {
-        App.setRoot("CrearUser");
+    void volverLink(MouseEvent event) throws IOException {
+        App.setRoot("Inicio");
     }
 }
