@@ -50,20 +50,19 @@ public class InicioController implements Initializable {
         String user = usuario.getText();
         String con = contra.getText();
 
-        // Aquí va la lógica de autenticación, por ejemplo, validar el usuario y la contraseña
-        if (validateLogin(user, con)) {
+        
+        if (validarinicio(user, con)) {
             System.out.println("Usuario valido");
-            // Redirigir a la siguiente página después de un inicio de sesión exitoso
+            
         } else {
             System.out.println("Usuario o contraseña no valida");
-            // Mostrar mensaje de error de autenticación
+            
         }
     }
     
 
-    private boolean validateLogin(String username, String password) {
-        // Aquí va la lógica de validación del usuario y la contraseña
-        // Por ahora solo retorna true para simplificar
+    private boolean validarinicio(String username, String password) {
+        
         return true;
     }
 
