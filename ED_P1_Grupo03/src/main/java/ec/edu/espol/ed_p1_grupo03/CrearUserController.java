@@ -52,19 +52,20 @@ public class CrearUserController implements Initializable {
         String user = usuario.getText();
         String con = contra.getText();
         String con2 = contra2.getText();
-        
-        if(!con.equals(con2)){
+
+        if (!con.equals(con2)) {
             contra2.clear();
-            System.out.println("No coinciden las contraseñas");
+            System.out.println("Las contraseñas no coinciden");
             return;
         }
-        
+
         if (validarcrearuser(user)) {
+            Usuario nuevoUsuario = new Usuario(user, con);
+            Usuario.guardarUsuario(nuevoUsuario);
             System.out.println("Usuario creado");
             App.setRoot("Inicio");
         } else {
             System.out.println("Nombre de usuario ya ocupado");
-            return;
         }
     }
     

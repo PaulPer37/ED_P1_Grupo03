@@ -61,10 +61,10 @@ public class Usuario implements Serializable {
             return null;
         }
     }
-    public static void guardarUsuarios(Usuario usuario) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt"))) {
-                writer.write(usuario.toString());
-                writer.newLine();
+    public static void guardarUsuario(Usuario usuario) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt", true))) {
+            writer.write(usuario.toString());
+            writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
