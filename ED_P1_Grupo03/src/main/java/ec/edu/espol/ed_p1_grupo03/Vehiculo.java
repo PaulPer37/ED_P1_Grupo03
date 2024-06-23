@@ -176,23 +176,6 @@ public class Vehiculo  {
     
     // editar carro
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.marca);
-        hash = 59 * hash + Objects.hashCode(this.modelo);
-        hash = 59 * hash + this.year;
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.precio) ^ (Double.doubleToLongBits(this.precio) >>> 32));
-        hash = 59 * hash + this.kilometraje;
-        hash = 59 * hash + Objects.hashCode(this.motor);
-        hash = 59 * hash + Objects.hashCode(this.transmision);
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.peso) ^ (Double.doubleToLongBits(this.peso) >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.ubicacion);
-        hash = 59 * hash + Objects.hashCode(this.fotos);
-        hash = 59 * hash + Objects.hashCode(this.historialAccidente);
-        hash = 59 * hash + Objects.hashCode(this.historialMantenimiento);
-        return hash;
-    }
 
     @Override
      public boolean equals(Object o) {
