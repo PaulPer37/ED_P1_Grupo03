@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 /**
@@ -20,55 +21,55 @@ import javafx.scene.text.Text;
  *
  * @author RUCO HOUSE
  */
-public class InicioController implements Initializable {
+public class EleccionController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    
     @FXML
-    private TextField usuario;
+    private Pane vender;
 
     @FXML
-    private PasswordField contra;
-
+    private Pane comprar;
     @FXML
-    private Text crear;
+    private Text cerrar;
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        crear.setOnMouseClicked(event -> {
+        vender.setOnMouseClicked(event -> {
             try {
-                crearLink(event);
+                venderLink(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        comprar.setOnMouseClicked(event -> {
+            try {
+                comprarLink(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        cerrar.setOnMouseClicked(event -> {
+            try {
+                cerrarLink(event);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
     }  
-    @FXML
-    private void iniciar(ActionEvent event) throws IOException {
-        String user = usuario.getText();
-        String con = contra.getText();
-
-        
-        if (validarinicio(user, con)) {
-            System.out.println("Usuario valido");
-            App.setRoot("Eleccion");
-            
-        } else {
-            System.out.println("Usuario o contraseña no valida");
-            
-        }
-    }
-    
-
-    private boolean validarinicio(String usuario, String contra) {
-        
-        return true;
-    }
 
     @FXML
-    void crearLink(MouseEvent event) throws IOException {
+    void venderLink(MouseEvent event) throws IOException {
         App.setRoot("CrearUser");
+    }
+    @FXML
+    void comprarLink(MouseEvent event) throws IOException {
+        App.setRoot("CrearUser");
+    }
+    @FXML
+    void cerrarLink(MouseEvent event) throws IOException {
+        App.setRoot("Inicio");
     }
 }
