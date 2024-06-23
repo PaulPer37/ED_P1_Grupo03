@@ -1,5 +1,6 @@
 package ec.edu.espol.ed_p1_grupo03;
 
+import static ec.edu.espol.ed_p1_grupo03.Vehiculo.cargarListaCarros;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +33,11 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //launch();
+        LinkedList<Vehiculo> v = cargarListaCarros("carros.txt");
+        for(Vehiculo v1 :v){
+            System.out.println(v1.toString());
+        }
     }
     
 

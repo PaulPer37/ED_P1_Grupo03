@@ -170,14 +170,14 @@ public class Vehiculo  {
                 String ubicacion = tokens[6];
                 //agregar fotos:
                 LinkedList<String> fotos= new LinkedList<>();
-                for(String foto :tokens[9].split(";")){
+                for(String foto :tokens[7].split(";")){
                     fotos.addFirst(foto);
                     
                 }
                 LinkedList<Servicio> servicio= new LinkedList<>();
                 
-                for(String serv : tokens[10].split(";")){
-                    String[] items= serv.split("|");
+                for(String serv : tokens[8].split(";")){
+                    String[] items= serv.split("\\|");      //2019|Cambio de aceite regular|MANTENIMIENTO|100.0
                     Servicio ser=new Servicio(items[0],items[1],TipoServicio.valueOf(items[2]),Double.parseDouble(items[3]));
                     servicio.addFirst(ser);
                 }
@@ -191,7 +191,6 @@ public class Vehiculo  {
         } catch(IOException e){
             System.out.println("ERROR");
         }
-
          return listavehiculo;
      }
     
