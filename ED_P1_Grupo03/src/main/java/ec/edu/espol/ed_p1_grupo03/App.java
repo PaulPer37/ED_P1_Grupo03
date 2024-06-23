@@ -33,11 +33,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        //launch();
-        LinkedList<Vehiculo> v = cargarListaCarros("carros.txt");
-        for(Vehiculo v1 :v){
-            System.out.println(v1.toString());
-        }
+        launch();
     }
     
 

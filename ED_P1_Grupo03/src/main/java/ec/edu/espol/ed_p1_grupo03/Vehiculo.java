@@ -5,7 +5,9 @@
 package ec.edu.espol.ed_p1_grupo03;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -41,7 +43,7 @@ public class Vehiculo  {
     }
 
     //vehiculo nuevo
-    public Vehiculo(String marca, String modelo, int año, double precio, int kilometraje, String ubicacion, LinkedList<String> fotos) {
+    public Vehiculo(String marca, String modelo, int año, double precio, int kilometraje, String motor,String ubicacion, LinkedList<String> fotos) {
         this.marca = marca;
         this.modelo = modelo;
         this.year = año;
@@ -193,5 +195,36 @@ public class Vehiculo  {
         }
          return listavehiculo;
      }
+     
+     public static void crearCarro(Vehiculo vh, String doc) {
+         try (BufferedWriter bw = new BufferedWriter(new FileWriter(doc, true))) {
+            //Toyota,Corolla,2015,15000,60000,1.8L,Quito,toyotacorolla20151.jpeg;toyotacorolla20152.jpeg,2016|Lev
+            String texto=vh.marca+","+vh.modelo+","+vh.year+","+vh.precio+","+vh.kilometraje+","+vh.motor+","+vh.ubicacion+",";
+            int cont=0;
+            for(String cadena : vh.fotos){
+                 if(cont<vh.fotos.size()-1){
+                 texto = texto+cadena+";";
+                 }else{
+                     texto = texto+cadena;
+                 }
+            }
+            texto+=",";
+            for(Servicio cadena:vh.servicio){
+                 String text=cadena.getFecha()+"|"+cadena.getDescripion()+"|"+cadena.getTiposervicio()+"|"+cadena.getCosto();
+                if(cont<vh.servicio.size()-1){
+                    texto+=text+";";
+                }else{
+                    texto+=text;
+                }
+            }
+            bw.newLine();
+            bw.write(texto);
+             
+             
+             
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     
 }
