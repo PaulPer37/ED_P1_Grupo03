@@ -20,44 +20,37 @@ public class Vehiculo  {
     private double precio;
     private int kilometraje;
     private String motor;
-    private String transmision;
-    private double peso;
     private String ubicacion;
-    private List<String> fotos;
-    private List<String> historialAccidente;
-    private List<String> historialMantenimiento;
+    private LinkedList<String> fotos;
+    private LinkedList<Servicio> servicio;
 
     public Vehiculo() {
     }
     
     //vehiculo usado
-    public Vehiculo(String marca, String modelo, int año, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, List<String> fotos) {
+    public Vehiculo(String marca, String modelo, int año, double precio, int kilometraje, String motor, String ubicacion, LinkedList<String> fotos,LinkedList<Servicio> servicio) {
         this.marca = marca;
         this.modelo = modelo;
         this.year = año;
         this.precio = precio;
         this.kilometraje = kilometraje;
         this.motor = motor;
-        this.transmision = transmision;
-        this.peso = peso;
         this.ubicacion = ubicacion;
         this.fotos = fotos;
+        this.servicio = servicio;
     }
 
     //vehiculo nuevo
-    public Vehiculo(String marca, String modelo, int año, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, List<String> fotos, List<String> historialAccidente, List<String> historialMantenimiento) {
+    public Vehiculo(String marca, String modelo, int año, double precio, int kilometraje, String ubicacion, LinkedList<String> fotos) {
         this.marca = marca;
         this.modelo = modelo;
         this.year = año;
         this.precio = precio;
         this.kilometraje = kilometraje;
         this.motor = motor;
-        this.transmision = transmision;
-        this.peso = peso;
         this.ubicacion = ubicacion;
         this.fotos = fotos;
-        this.historialAccidente = historialAccidente;
-        this.historialMantenimiento = historialMantenimiento;
+        
         
         
     }
@@ -110,22 +103,6 @@ public class Vehiculo  {
         this.motor = motor;
     }
 
-    public String getTransmision() {
-        return transmision;
-    }
-
-    public void setTransmision(String transmisión) {
-        this.transmision = transmisión;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
     public String getUbicacion() {
         return ubicacion;
     }
@@ -134,28 +111,20 @@ public class Vehiculo  {
         this.ubicacion = ubicación;
     }
 
-    public List<String> getHistorialAccidente() {
-        return historialAccidente;
+    public List<Servicio> getServicio() {
+        return servicio;
     }
 
-    public void setHistorialAccidente(List<String> historialAccidente) {
-        this.historialAccidente = historialAccidente;
+    public void setServicio(LinkedList<Servicio> servicio) {
+        this.servicio = servicio;
     }
-
-    public List<String> getHistorialMantenimiento() {
-        return historialMantenimiento;
-    }
-
-    public void setHistorialMantenimiento(List<String> historialMantenimiento) {
-        this.historialMantenimiento = historialMantenimiento;
-    }
-
+    
 
     public List<String> getFotos() {
         return fotos;
     }
 
-    public void setFotos(List<String> fotos) {
+    public void setFotos(LinkedList<String> fotos) {
         this.fotos = fotos;
     }
     
@@ -182,7 +151,7 @@ public class Vehiculo  {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vehiculo vehicle = (Vehiculo) o;
-        return year == vehicle.year && Double.compare(vehicle.precio, precio) == 0 && kilometraje == vehicle.kilometraje && Double.compare(vehicle.peso, peso) == 0 && Objects.equals(marca, vehicle.marca) && Objects.equals(modelo, vehicle.modelo) && Objects.equals(motor, vehicle.motor) && Objects.equals(transmision, vehicle.transmision) && Objects.equals(ubicacion, vehicle.ubicacion);
+        return year == vehicle.year && Double.compare(vehicle.precio, precio) == 0 && kilometraje == vehicle.kilometraje && Objects.equals(marca, vehicle.marca) && Objects.equals(modelo, vehicle.modelo) && Objects.equals(motor, vehicle.motor) && Objects.equals(ubicacion, vehicle.ubicacion);
     }
      
      public static LinkedList<Vehiculo> cargarListaCarros (String nomArchivo){
@@ -198,44 +167,31 @@ public class Vehiculo  {
                 int kilometraje = Integer.parseInt(tokens[3]);
                 double precio = Double.parseDouble(tokens[4]);
                 String motor = tokens[5];
-                String transmision = tokens[6];
-                double peso = Double.parseDouble(tokens[7]);
-                String ubicacion = tokens[8];
+                String ubicacion = tokens[6];
                 //agregar fotos:
                 LinkedList<String> fotos= new LinkedList<>();
                 for(String foto :tokens[9].split(";")){
                     fotos.addFirst(foto);
                     
                 }
+                LinkedList<Servicio> servicio= new LinkedList<>();
                 
-                if(tokens.length>10){
-                    LinkedList<String> historialaccidentes = new LinkedList<>();
-                    LinkedList<String> historialreparaciones = new LinkedList<>();
-               
-                for(String acci :tokens[10].split(";")){
-                    historialaccidentes.addFirst(acci);
-                    
-                }
-                for(String repa :tokens[11].split(";")){
-                    historialreparaciones.addFirst(repa);
+                for(String serv : tokens[10].split(";")){
+                    String[] items= serv.split("|");
+                    Servicio ser=new Servicio(items[0],items[1],TipoServicio.valueOf(items[2]),Double.parseDouble(items[3]));
+                    servicio.addFirst(ser);
                 }
                 
-                Vehiculo v=new Vehiculo(marca,modelo,year,precio,kilometraje,motor,transmision,peso,ubicacion,fotos,historialaccidentes,historialreparaciones);
+                Vehiculo v=new Vehiculo(marca,modelo,year,precio,kilometraje,motor,ubicacion,fotos,servicio);
                 listavehiculo.addFirst(v);
-                }else{
-                    
-                
-                Vehiculo v=new Vehiculo(marca,modelo,year,precio,kilometraje,motor,transmision,peso,ubicacion,fotos);
-                listavehiculo.addFirst(v);
-                }
             }
+            
             
             
         } catch(IOException e){
             System.out.println("ERROR");
         }
-         
-         
+
          return listavehiculo;
      }
     
