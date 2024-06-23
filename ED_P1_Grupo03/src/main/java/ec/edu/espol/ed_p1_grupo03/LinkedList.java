@@ -50,7 +50,6 @@ public class LinkedList<E> implements List<E>{
             return false;
         }
     }
-
     @Override
     public boolean addLast(E e) {
         //size++;
