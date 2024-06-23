@@ -52,19 +52,17 @@ public class InicioController implements Initializable {
         String user = usuario.getText();
         String con = contra.getText();
 
-        
-        if (validarinicio(user, con)) {
-            System.out.println("Usuario valido");
+        Usuario usuarioActual = validarInicio(user, con);
+        if (usuarioActual != null) {
+            System.out.println("Usuario válido");
+            App.setUsuarioActual(usuarioActual);
             App.setRoot("Eleccion");
-            
         } else {
-            System.out.println("Usuario o contraseña no valida");
-            
+            System.out.println("Usuario o contraseña no válidos");
         }
     }
-    
 
-    private boolean validarinicio(String usuario, String contra) {
+    private Usuario validarInicio(String usuario, String contra) {
         try (BufferedReader br = new BufferedReader(new FileReader("usuarios.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -73,14 +71,14 @@ public class InicioController implements Initializable {
                     String nombre = partes[0];
                     String password = partes[1];
                     if (nombre.equals(usuario) && password.equals(contra)) {
-                        return true;
+                        return new Usuario(nombre, password);
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     @FXML

@@ -15,6 +15,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Usuario usuarioActual;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -31,14 +32,15 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+    public static void setUsuarioActual(Usuario usuario) {
+        usuarioActual = usuario;
+    }
 
+    public static Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
     public static void main(String[] args) {
         launch();
-        LinkedList<Integer> list = new LinkedList<>();
-        list.addLast(1);
-        list.addLast(2);
-        System.out.println("Hola Mundo");
-        System.out.println(list);
         
     }
     
