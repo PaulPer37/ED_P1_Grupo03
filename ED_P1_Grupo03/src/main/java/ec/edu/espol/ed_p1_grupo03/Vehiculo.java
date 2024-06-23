@@ -196,7 +196,7 @@ public class Vehiculo  {
          return listavehiculo;
      }
      
-     public static void crearCarro(Vehiculo vh, String doc) {
+    public static void crearCarro(Vehiculo vh, String doc) {
          try (BufferedWriter bw = new BufferedWriter(new FileWriter(doc, true))) {
             //Toyota,Corolla,2015,15000,60000,1.8L,Quito,toyotacorolla20151.jpeg;toyotacorolla20152.jpeg,2016|Lev
             String texto=vh.marca+","+vh.modelo+","+vh.year+","+vh.precio+","+vh.kilometraje+","+vh.motor+","+vh.ubicacion+",";
@@ -226,5 +226,7 @@ public class Vehiculo  {
             ex.printStackTrace();
         }
     }
+    
+    
     
 }
