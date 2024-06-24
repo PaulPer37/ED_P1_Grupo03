@@ -40,7 +40,10 @@ public class App extends Application {
         return usuarioActual;
     }
     public static void main(String[] args) {
-        launch();
+        //launch();
+        for( Vehiculo v: cargarListaCarros("carros.txt")){
+            System.out.println(v.toString());
+        }
         
     }
     

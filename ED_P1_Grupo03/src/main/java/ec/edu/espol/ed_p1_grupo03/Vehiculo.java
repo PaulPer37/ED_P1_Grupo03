@@ -6,6 +6,7 @@ package ec.edu.espol.ed_p1_grupo03;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,12 +17,17 @@ import java.util.Objects;
  * @author DHAMAR
  */
 public class Vehiculo  {
+    
+    private static String  idFile = "idFile.txt" ;
+    private String id;
     private String marca;
     private String modelo;
     private int year;
     private double precio;
     private int kilometraje;
     private String motor;
+    private String transmision;
+    private double peso;
     private String ubicacion;
     private LinkedList<String> fotos;
     private LinkedList<Servicio> servicio;
@@ -29,33 +35,38 @@ public class Vehiculo  {
     public Vehiculo() {
     }
     
-    //vehiculo usado
-    public Vehiculo(String marca, String modelo, int año, double precio, int kilometraje, String motor, String ubicacion, LinkedList<String> fotos,LinkedList<Servicio> servicio) {
+    //vehiculo sin id- se le asigna uno.
+
+    public Vehiculo(String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
+        this.id= generarID();
         this.marca = marca;
         this.modelo = modelo;
-        this.year = año;
+        this.year = year;
         this.precio = precio;
         this.kilometraje = kilometraje;
         this.motor = motor;
+        this.transmision = transmision;
+        this.peso = peso;
         this.ubicacion = ubicacion;
         this.fotos = fotos;
         this.servicio = servicio;
     }
-
-    //vehiculo nuevo
-    public Vehiculo(String marca, String modelo, int año, double precio, int kilometraje, String motor,String ubicacion, LinkedList<String> fotos) {
+    
+    //vehiculo si servicio
+    public Vehiculo(String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos) {
+        this.id= generarID();
+        this.id = id;
         this.marca = marca;
         this.modelo = modelo;
-        this.year = año;
+        this.year = year;
         this.precio = precio;
         this.kilometraje = kilometraje;
         this.motor = motor;
+        this.transmision = transmision;
+        this.peso = peso;
         this.ubicacion = ubicacion;
         this.fotos = fotos;
-        
-        
-        
-    }
+    } 
     
     public String getMarca() {
         return marca;
@@ -120,6 +131,38 @@ public class Vehiculo  {
     public void setServicio(LinkedList<Servicio> servicio) {
         this.servicio = servicio;
     }
+
+    public static String getIdFile() {
+        return idFile;
+    }
+
+    public static void setIdFile(String idFile) {
+        Vehiculo.idFile = idFile;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTransmision() {
+        return transmision;
+    }
+
+    public void setTransmision(String transmision) {
+        this.transmision = transmision;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
     
 
     public List<String> getFotos() {
@@ -132,6 +175,7 @@ public class Vehiculo  {
     
     public String toString() {
         return 
+                "id="+id+
                 "Marca='" + marca + "\n" +
                 "Modelo='" + modelo + "\n" +
                 "Año=" + year +"\n"+
@@ -162,34 +206,34 @@ public class Vehiculo  {
             String line;
             while((line=br.readLine()) !=null){
                 String [] tokens = line.split(",");
-               
+                
+                //String id = tokens[0];
                 String marca = tokens[0];
                 String modelo = tokens[1];
                 int year = Integer.parseInt(tokens[2]);
-                int kilometraje = Integer.parseInt(tokens[3]);
-                double precio = Double.parseDouble(tokens[4]);
+                double precio = Double.parseDouble(tokens[3]);
+                int kilometraje = Integer.parseInt(tokens[4]);
                 String motor = tokens[5];
-                String ubicacion = tokens[6];
+                String transmision = tokens[6];
+                double peso = Double.parseDouble(tokens[7]);
+                String ubicacion = tokens[8];
                 //agregar fotos:
                 LinkedList<String> fotos= new LinkedList<>();
-                for(String foto :tokens[7].split(";")){
+                for(String foto :tokens[9].split(";")){
                     fotos.addFirst(foto);
                     
                 }
                 LinkedList<Servicio> servicio= new LinkedList<>();
                 
-                for(String serv : tokens[8].split(";")){
+                for(String serv : tokens[10].split(";")){
                     String[] items= serv.split("\\|");      //2019|Cambio de aceite regular|MANTENIMIENTO|100.0
                     Servicio ser=new Servicio(items[0],items[1],TipoServicio.valueOf(items[2]),Double.parseDouble(items[3]));
                     servicio.addFirst(ser);
                 }
                 
-                Vehiculo v=new Vehiculo(marca,modelo,year,precio,kilometraje,motor,ubicacion,fotos,servicio);
+                Vehiculo v = new Vehiculo( marca, modelo, year, precio, kilometraje, motor, transmision, peso, ubicacion, fotos, servicio);
                 listavehiculo.addFirst(v);
-            }
-            
-            
-            
+            }   
         } catch(IOException e){
             System.out.println("ERROR");
         }
@@ -197,36 +241,72 @@ public class Vehiculo  {
      }
      
     public static void crearCarro(Vehiculo vh, String doc) {
-         try (BufferedWriter bw = new BufferedWriter(new FileWriter(doc, true))) {
-            //Toyota,Corolla,2015,15000,60000,1.8L,Quito,toyotacorolla20151.jpeg;toyotacorolla20152.jpeg,2016|Lev
-            String texto=vh.marca+","+vh.modelo+","+vh.year+","+vh.precio+","+vh.kilometraje+","+vh.motor+","+vh.ubicacion+",";
-            int cont=0;
-            for(String cadena : vh.fotos){
-                 if(cont<vh.fotos.size()-1){
-                 texto = texto+cadena+";";
-                 }else{
-                     texto = texto+cadena;
-                 }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(doc, true))) {
+            StringBuilder texto = new StringBuilder();
+            texto.append(vh.id).append(",")
+                .append(vh.marca).append(",")
+                .append(vh.modelo).append(",")
+                .append(vh.year).append(",")
+                .append(vh.precio).append(",")
+                .append(vh.kilometraje).append(",")
+                .append(vh.motor).append(",")
+                .append(vh.transmision).append(",")
+                .append(vh.peso).append(",")
+                .append(vh.ubicacion).append(",");
+
+            for (int i = 0; i < vh.fotos.size(); i++) {
+                texto.append(vh.fotos.get(i));
+                if (i < vh.fotos.size() - 1) {
+                    texto.append(";");
+                }
             }
-            texto+=",";
-            for(Servicio cadena:vh.servicio){
-                 String text=cadena.getFecha()+"|"+cadena.getDescripion()+"|"+cadena.getTiposervicio()+"|"+cadena.getCosto();
-                if(cont<vh.servicio.size()-1){
-                    texto+=text+";";
-                }else{
-                    texto+=text;
+            texto.append(",");
+            for (int i = 0; i < vh.servicio.size(); i++) {
+                Servicio serv = vh.servicio.get(i);
+                texto.append(serv.getFecha()).append("|")
+                     .append(serv.getDescripion()).append("|")
+                     .append(serv.getTiposervicio()).append("|")
+                     .append(serv.getCosto());
+                if (i < vh.servicio.size() - 1) {
+                    texto.append(";");
                 }
             }
             bw.newLine();
-            bw.write(texto);
-             
-             
-             
+            bw.write(texto.toString());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
     
+    public static synchronized String generarID(){ //crea los id consecutivos y los agrega en un archivo para leer el ultimo y crear el siguiente.
+        int lastid=0000;
+        File archivo = new File(idFile);
+        if(archivo.exists()){
+        try(BufferedReader br=new BufferedReader(new FileReader(idFile))){
+            String line = br.readLine();
+            if(line!=null){
+                lastid=Integer.parseInt(line);
+            }  
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        lastid++;
+        //cuarda el id en el archivo
+        try(BufferedWriter bw=new BufferedWriter(new FileWriter (idFile))){
+            bw.write(Integer.toString(lastid));
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        }
+        return Integer.toString(lastid);
+        
+    }
+    public static void editarVehiculo(String id,String doc){
+        
+        
+    }
     
-    
+        
+        
+ 
 }

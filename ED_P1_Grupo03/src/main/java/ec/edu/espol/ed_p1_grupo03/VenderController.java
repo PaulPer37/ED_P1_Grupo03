@@ -98,7 +98,7 @@ public class VenderController implements Initializable {
             String motorStr = motor.getText();
             String ubicacionStr = ubicacion.getText();
 
-            Vehiculo vehiculo = new Vehiculo(marcaStr, modeloStr, anioInt, precioDouble, kilometrajeInt, motorStr, ubicacionStr, fotos);
+            Vehiculo vehiculo = new Vehiculo(marcaStr, modeloStr, anioInt, precioDouble, kilometrajeInt, motorStr,transmisionStr,pesoDouble, ubicacionStr, fotos);
 
             Usuario usuarioActual = App.getUsuarioActual();
             if (usuarioActual != null) {
