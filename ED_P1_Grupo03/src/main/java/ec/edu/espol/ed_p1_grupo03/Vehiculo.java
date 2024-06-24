@@ -36,7 +36,6 @@ public class Vehiculo  {
     }
     
     //vehiculo sin id- se le asigna uno.
-
     public Vehiculo(String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
         this.id= generarID();
         this.marca = marca;
@@ -51,8 +50,7 @@ public class Vehiculo  {
         this.fotos = fotos;
         this.servicio = servicio;
     }
-    
-    //vehiculo si servicio
+    //vehiculo sin servicio
     public Vehiculo(String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos) {
         this.id= generarID();
         this.id = id;
@@ -66,6 +64,22 @@ public class Vehiculo  {
         this.peso = peso;
         this.ubicacion = ubicacion;
         this.fotos = fotos;
+    } 
+    //vehiculos que ya tienen id: mas que todo para los que estan en el txt
+    public Vehiculo(String id, String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
+        this.id= id;
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.year = year;
+        this.precio = precio;
+        this.kilometraje = kilometraje;
+        this.motor = motor;
+        this.transmision = transmision;
+        this.peso = peso;
+        this.ubicacion = ubicacion;
+        this.fotos = fotos;
+        this.servicio = servicio;
     } 
     
     public String getMarca() {
@@ -207,31 +221,31 @@ public class Vehiculo  {
             while((line=br.readLine()) !=null){
                 String [] tokens = line.split(",");
                 
-                //String id = tokens[0];
-                String marca = tokens[0];
-                String modelo = tokens[1];
-                int year = Integer.parseInt(tokens[2]);
-                double precio = Double.parseDouble(tokens[3]);
-                int kilometraje = Integer.parseInt(tokens[4]);
-                String motor = tokens[5];
-                String transmision = tokens[6];
-                double peso = Double.parseDouble(tokens[7]);
-                String ubicacion = tokens[8];
+                String id = tokens[0];
+                String marca = tokens[1];
+                String modelo = tokens[2];
+                int year = Integer.parseInt(tokens[3]);
+                double precio = Double.parseDouble(tokens[4]);
+                int kilometraje = Integer.parseInt(tokens[5]);
+                String motor = tokens[6];
+                String transmision = tokens[7];
+                double peso = Double.parseDouble(tokens[8]);
+                String ubicacion = tokens[9];
                 //agregar fotos:
                 LinkedList<String> fotos= new LinkedList<>();
-                for(String foto :tokens[9].split(";")){
+                for(String foto :tokens[10].split(";")){
                     fotos.addFirst(foto);
                     
                 }
                 LinkedList<Servicio> servicio= new LinkedList<>();
                 
-                for(String serv : tokens[10].split(";")){
+                for(String serv : tokens[11].split(";")){
                     String[] items= serv.split("\\|");      //2019|Cambio de aceite regular|MANTENIMIENTO|100.0
                     Servicio ser=new Servicio(items[0],items[1],TipoServicio.valueOf(items[2]),Double.parseDouble(items[3]));
                     servicio.addFirst(ser);
                 }
                 
-                Vehiculo v = new Vehiculo( marca, modelo, year, precio, kilometraje, motor, transmision, peso, ubicacion, fotos, servicio);
+                Vehiculo v = new Vehiculo( id,marca, modelo, year, precio, kilometraje, motor, transmision, peso, ubicacion, fotos, servicio);
                 listavehiculo.addFirst(v);
             }   
         } catch(IOException e){
@@ -278,29 +292,34 @@ public class Vehiculo  {
         }
     }
     
-    public static synchronized String generarID(){ //crea los id consecutivos y los agrega en un archivo para leer el ultimo y crear el siguiente.
-        int lastid=0000;
+    public static synchronized String generarID() {
+        int lastId = 0;
         File archivo = new File(idFile);
-        if(archivo.exists()){
-        try(BufferedReader br=new BufferedReader(new FileReader(idFile))){
-            String line = br.readLine();
-            if(line!=null){
-                lastid=Integer.parseInt(line);
-            }  
-        }catch(IOException e){
+
+        // Leer el último ID desde el archivo
+        if (archivo.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+                String line = br.readLine();
+                if (line != null) {
+                    lastId = Integer.parseInt(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    // Incrementar el ID
+        lastId++;
+
+    // Guardar el nuevo ID en el archivo
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+            bw.write(Integer.toString(lastId));
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        lastid++;
-        //cuarda el id en el archivo
-        try(BufferedWriter bw=new BufferedWriter(new FileWriter (idFile))){
-            bw.write(Integer.toString(lastid));
-        }catch(IOException e){
-            System.out.println(e.getMessage());
-        }
-        }
-        return Integer.toString(lastid);
-        
-    }
+
+    return Integer.toString(lastId);
+}
     public static void editarVehiculo(String id,String doc){
         
         
