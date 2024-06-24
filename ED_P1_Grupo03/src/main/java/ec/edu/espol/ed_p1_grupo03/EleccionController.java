@@ -28,7 +28,8 @@ public class EleccionController implements Initializable {
      */
     @FXML
     private Pane vender;
-
+    @FXML
+    private Pane editar;
     @FXML
     private Pane comprar;
     @FXML
@@ -51,6 +52,13 @@ public class EleccionController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        editar.setOnMouseClicked(event -> {
+            try {
+                editarLink(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         cerrar.setOnMouseClicked(event -> {
             try {
                 cerrarLink(event);
@@ -62,7 +70,7 @@ public class EleccionController implements Initializable {
 
     @FXML
     void venderLink(MouseEvent event) throws IOException {
-        App.setRoot("CrearUser");
+        App.setRoot("Vender");
     }
     @FXML
     void comprarLink(MouseEvent event) throws IOException {
@@ -70,6 +78,10 @@ public class EleccionController implements Initializable {
     }
     @FXML
     void cerrarLink(MouseEvent event) throws IOException {
+        App.setRoot("Inicio");
+    }
+    @FXML
+    void editarLink(MouseEvent event) throws IOException {
         App.setRoot("Inicio");
     }
 }
