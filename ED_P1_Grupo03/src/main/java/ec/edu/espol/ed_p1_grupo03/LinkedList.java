@@ -220,6 +220,21 @@ public class LinkedList<E> implements List<E>{
         
         return it;
     }    
+    public void remove(E value) {
+        if (header.getContent().equals(value)) {
+            header = header.getNext();
+            return;
+        }
+
+        NodeList<E> nodo = header;
+        while (nodo.getNext() != null) {
+            if (nodo.getNext().getContent().equals(value)) {
+                nodo.setNext(nodo.getNext().getNext());
+                return;
+            }
+            nodo = nodo.getNext();
+        }
+    }
     /*
 
     @Override
