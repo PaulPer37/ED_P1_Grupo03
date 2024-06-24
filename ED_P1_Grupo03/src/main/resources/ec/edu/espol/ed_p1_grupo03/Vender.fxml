@@ -11,7 +11,7 @@
       <Label layoutX="235.0" layoutY="23.0" text="Descripción del Vehículo" />
       <Label layoutX="78.0" layoutY="74.0" text="Precio:" />
       <TextField fx:id="precio" layoutX="139.0" layoutY="70.0" />
-      <TextField fx:id="marcal" layoutX="419.0" layoutY="70.0" />
+      <TextField fx:id="marca" layoutX="419.0" layoutY="70.0" />
       <Label layoutX="359.0" layoutY="74.0" text="Marca:" />
       <Label layoutX="70.0" layoutY="130.0" text="Modelo:" />
       <Label layoutX="365.0" layoutY="130.0" text="Año:" />
