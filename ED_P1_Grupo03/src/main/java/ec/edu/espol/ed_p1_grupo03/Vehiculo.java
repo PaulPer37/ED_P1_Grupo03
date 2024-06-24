@@ -320,8 +320,42 @@ public class Vehiculo  {
 
     return Integer.toString(lastId);
 }
-    public static void editarVehiculo(String id,String doc){
-        
+    public static void editarVehiculo(String id, String nuevamarca, String nuevomodelo, int nuevoyear, double nuevoprecio, int nuevakilometraje, String nuevomotor, String nuevatransmision, double peso, String nuevaubicacion, LinkedList<String> nuevafotos, LinkedList<Servicio> nuevaservicio, String nomfile){
+        LinkedList<Vehiculo> vehiculosUser = cargarListaCarros(nomfile);
+        for(Vehiculo v : vehiculosUser){
+            if(v.id.equals(id)){
+                if(nuevamarca != null){
+                    v.setMarca(nuevamarca);
+                }
+                if(nuevomodelo != null){
+                    v.setModelo(nuevomodelo);
+                }
+                if(null != Integer.toString(nuevoyear)){
+                    v.setYear(nuevoyear);
+                }
+                if(Double.toString(nuevoprecio) != null){
+                    v.setPrecio(nuevoprecio);
+                }
+                if(Integer.toString(nuevakilometraje) != null){
+                    v.setKilometraje(nuevakilometraje);
+                }
+                if(nuevomotor != null){
+                    v.setMotor(nuevomotor);
+                }
+                if(nuevatransmision != null){
+                    v.setTransmision(nuevatransmision);
+                }
+                if(nuevaubicacion != null){
+                    v.setUbicacion(nuevaubicacion);
+                }
+                if(nuevafotos != null){
+                    v.setFotos(nuevafotos);
+                }
+                if(nuevaservicio != null){
+                    v.setServicio(nuevaservicio);
+                }
+            }
+        }
         
     }
     
