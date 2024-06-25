@@ -16,6 +16,8 @@ public class App extends Application {
 
     private static Scene scene;
     private static Usuario usuarioActual;
+    private static Vehiculo carroeditar;
+    private static Vehiculo carrocomprar;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -45,6 +47,22 @@ public class App extends Application {
             System.out.println(v.toString());
         }
         
+    }
+
+    public static Vehiculo getCarroeditar() {
+        return carroeditar;
+    }
+
+    public static Vehiculo getCarrocomprar() {
+        return carrocomprar;
+    }
+
+    public static void setCarroeditar(Vehiculo carroeditar) {
+        App.carroeditar = carroeditar;
+    }
+
+    public static void setCarrocomprar(Vehiculo carrocomprar) {
+        App.carrocomprar = carrocomprar;
     }
     
 
