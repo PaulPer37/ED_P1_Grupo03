@@ -74,7 +74,7 @@ public class EleccionController implements Initializable {
     }
     @FXML
     void comprarLink(MouseEvent event) throws IOException {
-        App.setRoot("CrearUser");
+        App.setRoot("Comprar");
     }
     @FXML
     void cerrarLink(MouseEvent event) throws IOException {
@@ -82,6 +82,6 @@ public class EleccionController implements Initializable {
     }
     @FXML
     void editarLink(MouseEvent event) throws IOException {
-        App.setRoot("Inicio");
+        App.setRoot("Editar");
     }
 }

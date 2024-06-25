@@ -280,5 +280,23 @@ public class LinkedList<E> implements List<E>{
         return repetidos;
     }
 */
-    
+    LinkedList sublist(int start, int end) {
+        if (start < 0 || end < start) {
+            throw new IllegalArgumentException("Índices de inicio o fin inválidos");
+        }
+
+        LinkedList sublist = new LinkedList();
+        NodeList current = header;
+        int currentIndex = 0;
+
+        while (current != null && currentIndex <= end) {
+            if (currentIndex >= start && currentIndex <= end) {
+                sublist.addLast(current.getContent());
+            }
+            current = current.getNext();
+            currentIndex++;
+        }
+
+        return sublist;
+    }
 }
