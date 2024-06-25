@@ -54,18 +54,22 @@ public class Usuario implements Serializable {
         File archivo = new File(nombreArchivo);
         if (archivo.exists()) {
             vehiculos = Vehiculo.cargarListaCarros(nombreArchivo);
-        }
+        }else {
+        vehiculos = new LinkedList<>(); 
+    }
     }
 
     public void agregarVehiculo(Vehiculo vehiculo) {
         vehiculos.addLast(vehiculo);
         guardarVehiculos();
+        cargarVehiculos();
     }
 
     public void quitarVehiculo(Vehiculo vehiculo) {
         vehiculos.remove(vehiculo);
         guardarVehiculos();
         verificarYEliminarArchivoVehiculos();
+        cargarVehiculos();
     }
 
     private void verificarYEliminarArchivoVehiculos() {

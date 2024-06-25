@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.VenderController">
    <children>
@@ -31,5 +32,6 @@
       <TextField fx:id="ubicacion" layoutX="142.0" layoutY="270.0" />
       <ImageView fx:id="ver" fitHeight="150.0" fitWidth="200.0" layoutX="394.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="crear" layoutX="142.0" layoutY="348.0" mnemonicParsing="false" text="Crear" />
+      <Text fx:id="volver" fill="#5553b8" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" underline="true" />
    </children>
 </AnchorPane>

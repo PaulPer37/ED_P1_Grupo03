@@ -51,9 +51,9 @@ public class Vehiculo  {
         this.servicio = servicio;
     }
     //vehiculo sin servicio
-    public Vehiculo(String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos) {
-        this.id= generarID();
-        this.id = id;
+     public Vehiculo(String marca, String modelo, int year, double precio, int kilometraje, String motor,
+                    String transmision, double peso, String ubicacion, LinkedList<String> fotos) {
+        this.id = generarID();
         this.marca = marca;
         this.modelo = modelo;
         this.year = year;
@@ -62,9 +62,10 @@ public class Vehiculo  {
         this.motor = motor;
         this.transmision = transmision;
         this.peso = peso;
-        this.ubicacion = ubicacion;
+        this.ubicacion = ubicacion;  
         this.fotos = fotos;
-    } 
+        this.servicio = new LinkedList<>();  
+    }
     //vehiculos que ya tienen id: mas que todo para los que estan en el txt
     public Vehiculo(String id, String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
         this.id= id;
@@ -187,23 +188,41 @@ public class Vehiculo  {
         this.fotos = fotos;
     }
     
-    public String toString() {
-        return 
-                "id="+id+
-                "Marca='" + marca + "\n" +
-                "Modelo='" + modelo + "\n" +
-                "Año=" + year +"\n"+
-                "Precio=" + precio +"\n"+
-                "Kilometraje=" + kilometraje + "\n"+
-                "Motor='" + motor + "\n" +
-                "Ubicacion='" + ubicacion +"\n";
+    @Override
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("id=").append(id).append(",")
+      .append("Marca='").append(marca).append("',")
+      .append("Modelo='").append(modelo).append("',")
+      .append("Año=").append(year).append(",")
+      .append("Precio=").append(precio).append(",")
+      .append("Kilometraje=").append(kilometraje).append(",")
+      .append("Motor='").append(motor).append("',")
+      .append("Transmision='").append(transmision).append("',")
+      .append("Peso=").append(peso).append(",")
+      .append("Ubicacion='").append(ubicacion).append("',");
+    sb.append("Fotos=");
+    for (int i = 0; i < fotos.size(); i++) {
+        sb.append(fotos.get(i));
+        if (i < fotos.size() - 1) {
+            sb.append(";");
+        }
     }
+    sb.append(",Servicios=");
+    for (int i = 0; i < servicio.size(); i++) {
+        Servicio serv = servicio.get(i);
+        sb.append(serv.getFecha()).append("|")
+          .append(serv.getDescripion()).append("|")
+          .append(serv.getTiposervicio()).append("|")
+          .append(serv.getCosto());
+        if (i < servicio.size() - 1) {
+            sb.append(";");
+        }
+    }
+
+    return sb.toString();
+}
     
-    //añadir carro
-    
-    //eliminar carro
-    
-    // editar carro
 
 
     @Override
@@ -214,45 +233,107 @@ public class Vehiculo  {
         return year == vehicle.year && Double.compare(vehicle.precio, precio) == 0 && kilometraje == vehicle.kilometraje && Objects.equals(marca, vehicle.marca) && Objects.equals(modelo, vehicle.modelo) && Objects.equals(motor, vehicle.motor) && Objects.equals(ubicacion, vehicle.ubicacion);
     }
      
-     public static LinkedList<Vehiculo> cargarListaCarros (String nomArchivo){
-        LinkedList <Vehiculo> listavehiculo = new LinkedList<Vehiculo> ();
-        try (BufferedReader br =new BufferedReader(new FileReader(nomArchivo));){
-            String line;
-            while((line=br.readLine()) !=null){
-                String [] tokens = line.split(",");
-                
-                String id = tokens[0];
-                String marca = tokens[1];
-                String modelo = tokens[2];
-                int year = Integer.parseInt(tokens[3]);
-                double precio = Double.parseDouble(tokens[4]);
-                int kilometraje = Integer.parseInt(tokens[5]);
-                String motor = tokens[6];
-                String transmision = tokens[7];
-                double peso = Double.parseDouble(tokens[8]);
-                String ubicacion = tokens[9];
-                //agregar fotos:
-                LinkedList<String> fotos= new LinkedList<>();
-                for(String foto :tokens[10].split(";")){
-                    fotos.addFirst(foto);
-                    
+     public static LinkedList<Vehiculo> cargarListaCarros(String nomArchivo) {
+    LinkedList<Vehiculo> listaVehiculos = new LinkedList<>();
+    try (BufferedReader br = new BufferedReader(new FileReader(nomArchivo))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            if (line.isEmpty()) {
+                continue;
+            }
+            String[] partes = line.split(",");
+            if (partes.length < 8) {
+                System.out.println("Línea incompleta: " + line);
+                continue;
+            }
+            
+            String id = null;
+            String marca = null;
+            String modelo = null;
+            int year = 0;
+            double precio = 0.0;
+            int kilometraje = 0;
+            String motor = null;
+            String transmision = null;
+            double peso = 0.0;
+            String ubicacion = null;
+            LinkedList<String> fotos = new LinkedList<>();
+            LinkedList<Servicio> servicios = new LinkedList<>();
+            
+            for (String parte : partes) {
+                String[] atributo = parte.split("=");
+                if (atributo.length < 2) {
+                    continue;
                 }
-                LinkedList<Servicio> servicio= new LinkedList<>();
+                String key = atributo[0].trim();
+                String value = atributo[1].trim();
                 
-                for(String serv : tokens[11].split(";")){
-                    String[] items= serv.split("\\|");      //2019|Cambio de aceite regular|MANTENIMIENTO|100.0
-                    Servicio ser=new Servicio(items[0],items[1],TipoServicio.valueOf(items[2]),Double.parseDouble(items[3]));
-                    servicio.addFirst(ser);
+                switch (key) {
+                    case "id":
+                        id = value;
+                        break;
+                    case "Marca":
+                        marca = value.substring(1, value.length() - 1);
+                        break;
+                    case "Modelo":
+                        modelo = value.substring(1, value.length() - 1);
+                        break;
+                    case "Año":
+                        year = Integer.parseInt(value);
+                        break;
+                    case "Precio":
+                        precio = Double.parseDouble(value);
+                        break;
+                    case "Kilometraje":
+                        kilometraje = Integer.parseInt(value);
+                        break;
+                    case "Motor":
+                        motor = value.substring(1, value.length() - 1);
+                        break;
+                    case "Ubicacion":
+                        ubicacion = value.substring(1, value.length() - 1);
+                        break;
+                    case "Fotos":
+                        parseFotos(value, fotos);
+                        break;
+                    case "Servicios":
+                        parseServicios(value, servicios);
+                        break;
+                    default:
+                        // Manejar otros campos si es necesario
+                        break;
                 }
-                
-                Vehiculo v = new Vehiculo( id,marca, modelo, year, precio, kilometraje, motor, transmision, peso, ubicacion, fotos, servicio);
-                listavehiculo.addFirst(v);
-            }   
-        } catch(IOException e){
-            System.out.println("ERROR");
+            }
+            
+            Vehiculo vehiculo = new Vehiculo(id, marca, modelo, year, precio, kilometraje, motor, transmision, peso, ubicacion, fotos, servicios);
+            listaVehiculos.addLast(vehiculo);
         }
-         return listavehiculo;
-     }
+    } catch (IOException e) {
+        System.out.println("Error al cargar vehículos: " + e.getMessage());
+    }
+    return listaVehiculos;
+}
+
+private static void parseFotos(String fotosStr, LinkedList<String> fotos) {
+    int start = fotosStr.indexOf('[');
+    int end = fotosStr.lastIndexOf(']');
+    if (start != -1 && end != -1 && end > start + 1) {
+        String[] fotosArray = fotosStr.substring(start + 1, end).split(";");
+        for (String foto : fotosArray) {
+            fotos.addLast(foto.trim());
+        }
+    }
+}
+
+private static void parseServicios(String serviciosStr, LinkedList<Servicio> servicios) {
+    for (String servicioStr : serviciosStr.split(";")) {
+        String[] datosServicio = servicioStr.split("\\|");
+        if (datosServicio.length == 4) {
+            Servicio serv = new Servicio(datosServicio[0], datosServicio[1], TipoServicio.valueOf(datosServicio[2]), Double.parseDouble(datosServicio[3]));
+            servicios.addLast(serv);
+        }
+    }
+}
      
     public static void crearCarro(Vehiculo vh, String doc) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(doc, true))) {
@@ -357,6 +438,14 @@ public class Vehiculo  {
             }
         }
         
+    }
+    public static void guardarVehiculoEnArchivo(Vehiculo vehiculo, String nombreArchivo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo, true))) {
+            writer.write(vehiculo.toString());
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
         
