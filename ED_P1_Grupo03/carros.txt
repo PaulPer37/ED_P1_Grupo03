@@ -1,1 +1,4 @@
 id=23,Marca='2',Modelo='2',Aï¿½o=2,Precio=2.0,Kilometraje=2,Motor='2',Transmision='2',Peso=2.0,Ubicacion='2',Fotos=ec/edu/espol/carros/calendario.png,Servicios=
+id=24,Marca='30',Modelo='2',Año=23,Precio=30.0,Kilometraje=40,Motor='23',Transmision='22',Peso=21.0,Ubicacion='23',Fotos=ec/edu/espol/carros/ChevroletMalibu20161.jpeg,Servicios=
+id=25,Marca='33',Modelo='33',Año=33,Precio=33.0,Kilometraje=33,Motor='33',Transmision='33',Peso=33.0,Ubicacion='33',Fotos=ec/edu/espol/carros/ChevroletMalibu20161.jpeg;ec/edu/espol/carros/HondaCivic20181.jpeg,Servicios=
+id=26,Marca='1',Modelo='1',Año=1,Precio=1.0,Kilometraje=1,Motor='1',Transmision='1',Peso=1.0,Ubicacion='1',Fotos=ec/edu/espol/carros/toyotacorolla20151.jpeg,Servicios=

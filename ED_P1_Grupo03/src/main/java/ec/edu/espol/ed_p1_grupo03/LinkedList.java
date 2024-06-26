@@ -299,4 +299,30 @@ public class LinkedList<E> implements List<E>{
 
         return sublist;
     }
+    public void sort(Comparator<? super E> comparator) {
+        if (header == null || header == last) {
+            return;
+        }
+
+        boolean swapped;
+        NodeList<E> left;
+        NodeList<E> right = null;
+
+        do {
+            swapped = false;
+            left = header;
+
+            while (left.getNext() != right) {
+                if (comparator.compare(left.getContent(), left.getNext().getContent()) > 0) {
+                    // Swap nodes
+                    E temp = left.getContent();
+                    left.setContent(left.getNext().getContent());
+                    left.getNext().setContent(temp);
+                    swapped = true;
+                }
+                left = left.getNext();
+            }
+            right = left;
+        } while (swapped);
+    }
 }
