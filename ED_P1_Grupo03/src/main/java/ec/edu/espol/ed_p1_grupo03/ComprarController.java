@@ -35,6 +35,11 @@ public class ComprarController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private static Vehiculo seleccionado;
+
+    public static Vehiculo getSeleccionado() {
+        return seleccionado;
+    }
     @FXML
     private ComboBox<String> marcas;
     @FXML
@@ -60,6 +65,9 @@ public class ComprarController implements Initializable {
     private LinkedList<Vehiculo> vehiculos;
     private int pagina;
     private final int items = 5;
+    @FXML
+    private Button seleccionar;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         volver.setOnMouseClicked(event -> {
@@ -68,90 +76,99 @@ public class ComprarController implements Initializable {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+
         });
-        
+        seleccionar.setOnMouseClicked(event -> {
+            try {
+                if (seleccionado != null) {
+                    seleccionar(event);
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
         // Use relative path to load the car data
-        
         String rutaArchivoCarros = "carros.txt";
         vehiculos = Vehiculo.cargarListaCarros(rutaArchivoCarros);
         llenarComboBoxes(rutaArchivoCarros);
         mostrarvehiculo();
     }
-    @FXML
+
     void volverLink(MouseEvent event) throws IOException {
         App.setRoot("Eleccion");
     }
-    
+
     private void mostrarvehiculo() {
-    lista.getItems().clear();
-    LinkedList<Vehiculo> paginaActual = vehiculos.sublist(pagina * items, (pagina + 1) * items);
+        lista.getItems().clear();
+        LinkedList<Vehiculo> paginaActual = vehiculos.sublist(pagina * items, (pagina + 1) * items);
         System.out.println(paginaActual);
-    // Mostrar los vehículos en el ListView
-    paginaActual.forEach(vehiculo -> {
-        Label label = new Label(vehiculo.getMarca() + "-" + vehiculo.getModelo() + " - $" + vehiculo.getPrecio());
-        // Configurar evento de clic en cada vehículo
-        label.setOnMouseClicked(event -> {
-            // Acción al hacer clic en el vehículo (redireccionar, por ejemplo)
-            System.out.println("Clic en " + vehiculo.getMarca() + " " + vehiculo.getModelo());
+        // Mostrar los vehículos en el ListView
+        paginaActual.forEach(vehiculo -> {
+            Label label = new Label(vehiculo.getMarca() + "-" + vehiculo.getModelo() + " - $" + vehiculo.getPrecio());
+            // Configurar evento de clic en cada vehículo
+            label.setOnMouseClicked(event -> {
+                // Acción al hacer clic en el vehículo (redireccionar, por ejemplo)
+                System.out.println("Clic en " + vehiculo.getMarca() + " " + vehiculo.getModelo());
+                this.seleccionado = vehiculo;
+            });
+            lista.getItems().add(label); // Agregar el Label creado a la lista
         });
-        lista.getItems().add(label); // Agregar el Label creado a la lista
-    });
     }
 
-    
     @FXML
     private void filtro(ActionEvent event) {
-    String marca = marcas.getValue();
-    String modelo = modelos.getValue();
-    String precioMin = preciomin.getValue();
-    String precioMax = preciomax.getValue();
-    String kmMin = kilomin.getValue();
-    String kmMax = kilomax.getValue();
-    String ordenarPor = orden.getValue();
+        String marca = marcas.getValue();
+        String modelo = modelos.getValue();
+        String precioMin = preciomin.getValue();
+        String precioMax = preciomax.getValue();
+        String kmMin = kilomin.getValue();
+        String kmMax = kilomax.getValue();
+        String ordenarPor = orden.getValue();
 
-    LinkedList<Vehiculo> filtrados = new LinkedList<>();
-    for (Vehiculo vehiculo : vehiculos) {
-        boolean pasaFiltro = true;
-        
-        // Aplicar filtros
-        if (marca != null && !marca.equals(vehiculo.getMarca())) {
-            pasaFiltro = false;
+        LinkedList<Vehiculo> filtrados = new LinkedList<>();
+        for (Vehiculo vehiculo : vehiculos) {
+            boolean pasaFiltro = true;
+
+            // Aplicar filtros
+            if (marca != null && !marca.equals(vehiculo.getMarca())) {
+                pasaFiltro = false;
+            }
+            if (modelo != null && !modelo.equals(vehiculo.getModelo())) {
+                pasaFiltro = false;
+            }
+            if (precioMin != null && Double.parseDouble(precioMin) > vehiculo.getPrecio()) {
+                pasaFiltro = false;
+            }
+            if (precioMax != null && Double.parseDouble(precioMax) < vehiculo.getPrecio()) {
+                pasaFiltro = false;
+            }
+            if (kmMin != null && Integer.parseInt(kmMin) > vehiculo.getKilometraje()) {
+                pasaFiltro = false;
+            }
+            if (kmMax != null && Integer.parseInt(kmMax) < vehiculo.getKilometraje()) {
+                pasaFiltro = false;
+            }
+
+            // Agregar vehículo a la lista filtrada si pasa todos los filtros
+            if (pasaFiltro) {
+                filtrados.addLast(vehiculo);
+            }
         }
-        if (modelo != null && !modelo.equals(vehiculo.getModelo())) {
-            pasaFiltro = false;
+
+        // Ordenar según el criterio seleccionado
+        if ("Precio".equals(ordenarPor)) {
+            filtrados.sort((v1, v2) -> Double.compare(v1.getPrecio(), v2.getPrecio()));
+        } else if ("Kilometraje".equals(ordenarPor)) {
+            filtrados.sort((v1, v2) -> Integer.compare(v1.getKilometraje(), v2.getKilometraje()));
         }
-        if (precioMin != null && Double.parseDouble(precioMin) > vehiculo.getPrecio()) {
-            pasaFiltro = false;
-        }
-        if (precioMax != null && Double.parseDouble(precioMax) < vehiculo.getPrecio()) {
-            pasaFiltro = false;
-        }
-        if (kmMin != null && Integer.parseInt(kmMin) > vehiculo.getKilometraje()) {
-            pasaFiltro = false;
-        }
-        if (kmMax != null && Integer.parseInt(kmMax) < vehiculo.getKilometraje()) {
-            pasaFiltro = false;
-        }
-        
-        // Agregar vehículo a la lista filtrada si pasa todos los filtros
-        if (pasaFiltro) {
-            filtrados.addLast(vehiculo);
-        }
+
+        vehiculos = filtrados; // Actualizar la lista de vehículos original
+
+        pagina = 0;
+        mostrarvehiculo();
     }
 
-    // Ordenar según el criterio seleccionado
-    if ("Precio".equals(ordenarPor)) {
-        filtrados.sort((v1, v2) -> Double.compare(v1.getPrecio(), v2.getPrecio()));
-    } else if ("Kilometraje".equals(ordenarPor)) {
-        filtrados.sort((v1, v2) -> Integer.compare(v1.getKilometraje(), v2.getKilometraje()));
-    }
-
-    vehiculos = filtrados; // Actualizar la lista de vehículos original
-
-    pagina = 0;
-    mostrarvehiculo();
-}
-    
     @FXML
     private void anterior(ActionEvent event) {
         if (pagina > 0) {
@@ -167,12 +184,13 @@ public class ComprarController implements Initializable {
             mostrarvehiculo();
         }
     }
+
     private void llenarComboBoxes(String rutaArchivo) {
         Set<String> marcasSet = new HashSet<>();
         Set<String> modelosSet = new HashSet<>();
         Set<String> preciosSet = new HashSet<>();
         Set<String> kilometrajesSet = new HashSet<>();
-        
+
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -198,5 +216,14 @@ public class ComprarController implements Initializable {
         // Añadir opciones de ordenamiento
         orden.getItems().addAll("Precio", "Kilometraje");
     }
-    
+
+    @FXML
+    private void seleccionar(MouseEvent event) throws IOException {
+        try {
+            App.setRoot("DetallesVehiculoComprar");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

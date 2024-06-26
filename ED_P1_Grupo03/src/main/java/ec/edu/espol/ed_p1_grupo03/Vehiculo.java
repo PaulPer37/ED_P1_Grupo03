@@ -180,7 +180,7 @@ public class Vehiculo  {
     }
     
 
-    public List<String> getFotos() {
+    public LinkedList<String> getFotos() {
         return fotos;
     }
 
