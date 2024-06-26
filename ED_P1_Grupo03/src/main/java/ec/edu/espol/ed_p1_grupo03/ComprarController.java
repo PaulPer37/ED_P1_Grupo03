@@ -6,6 +6,8 @@ package ec.edu.espol.ed_p1_grupo03;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -58,9 +60,15 @@ public class ComprarController implements Initializable {
                 ex.printStackTrace();
             }
         });
-        vehiculos = Vehiculo.cargarListaCarros("carros.txt");
+        
+        // Use relative path to load the car data
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        String relativePath = s + "\\src\\main\\resources\\carros.txt";
+        vehiculos = Vehiculo.cargarListaCarros(relativePath);
+        
         mostrarvehiculo();
-    }    
+    }
     @FXML
     void volverLink(MouseEvent event) throws IOException {
         App.setRoot("Eleccion");
