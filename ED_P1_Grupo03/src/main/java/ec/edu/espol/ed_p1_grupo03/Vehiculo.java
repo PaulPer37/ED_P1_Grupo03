@@ -67,7 +67,8 @@ public class Vehiculo  {
         this.servicio = new LinkedList<>();  
     }
     //vehiculos que ya tienen id: mas que todo para los que estan en el txt
-    public Vehiculo(String id, String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
+    public Vehiculo(String id, String marca, String modelo, int year, double precio, int kilometraje, String motor, 
+            String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
         this.id= id;
         this.marca = marca;
         this.modelo = modelo;
@@ -402,41 +403,45 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
 
     return Integer.toString(lastId);
 }
-    public static void editarVehiculo(String id, String nuevamarca, String nuevomodelo, int nuevoyear, double nuevoprecio, int nuevakilometraje, String nuevomotor, String nuevatransmision, double peso, String nuevaubicacion, LinkedList<String> nuevafotos, LinkedList<Servicio> nuevaservicio, String nomfile){
+    public void editarVehiculo(Vehiculo veditado, String nomfile,Usuario user){
         LinkedList<Vehiculo> vehiculosUser = cargarListaCarros(nomfile);
         for(Vehiculo v : vehiculosUser){
-            if(v.id.equals(id)){
-                if(nuevamarca != null){
-                    v.setMarca(nuevamarca);
+            if(v.id.equals(veditado.getId())){
+                if(veditado.getMarca() != null){
+                    v.setMarca(veditado.getMarca());
                 }
-                if(nuevomodelo != null){
-                    v.setModelo(nuevomodelo);
+                if(veditado.getModelo() != null){
+                    v.setModelo(veditado.getModelo());
                 }
-                if(null != Integer.toString(nuevoyear)){
-                    v.setYear(nuevoyear);
+                if(null != Integer.toString(veditado.getYear())){
+                    v.setYear(veditado.getYear());
                 }
-                if(Double.toString(nuevoprecio) != null){
-                    v.setPrecio(nuevoprecio);
+                if(Double.toString(v.getPrecio()) != null){
+                    v.setPrecio(v.getPrecio());
                 }
-                if(Integer.toString(nuevakilometraje) != null){
-                    v.setKilometraje(nuevakilometraje);
+                if(Integer.toString(veditado.getKilometraje()) != null){
+                    v.setKilometraje(veditado.getKilometraje());
                 }
-                if(nuevomotor != null){
-                    v.setMotor(nuevomotor);
+                if(veditado.getMotor() != null){
+                    v.setMotor(veditado.getMotor());
                 }
-                if(nuevatransmision != null){
-                    v.setTransmision(nuevatransmision);
+                if(veditado.getTransmision() != null){
+                    v.setTransmision(veditado.getTransmision());
                 }
-                if(nuevaubicacion != null){
-                    v.setUbicacion(nuevaubicacion);
+                if(veditado.getUbicacion() != null){
+                    v.setUbicacion(veditado.getUbicacion());
                 }
-                if(nuevafotos != null){
-                    v.setFotos(nuevafotos);
+                if(veditado.getFotos() != null){
+                    v.setFotos(veditado.getFotos());
                 }
-                if(nuevaservicio != null){
-                    v.setServicio(nuevaservicio);
+                if(veditado.getServicio() != null){
+                    v.setServicio((LinkedList<Servicio>) veditado.getServicio());
                 }
             }
+            
+            }
+        for(Vehiculo vh : vehiculosUser){
+            guardarVehiculoEnArchivo(vh, nomfile);
         }
         
     }

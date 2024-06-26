@@ -106,15 +106,20 @@
          </font>
       </TextField>
       <ComboBox fx:id="cambovehiculos" layoutX="251.0" layoutY="18.0" prefHeight="25.0" prefWidth="165.0" />
-      <Button fx:id="guardar" layoutX="489.0" layoutY="339.0" mnemonicParsing="false" onMouseDragged="#guardar" text="Guardar">
+      <Button fx:id="guardar" layoutX="354.0" layoutY="333.0" mnemonicParsing="false" onMouseDragged="#guardar" text="Guardar">
          <font>
             <Font name="Serif Regular" size="14.0" />
          </font>
       </Button>
-      <Text fx:id="texto1" layoutX="39.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="155.13671875">
+      <Text fx:id="texto1" layoutX="39.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="512.13671875">
          <font>
             <Font name="Serif Regular" size="18.0" />
          </font>
       </Text>
+      <Button fx:id="serviciosb" layoutX="441.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#añadirServicio" prefHeight="28.0" prefWidth="115.0" text="Añadir Servicios">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

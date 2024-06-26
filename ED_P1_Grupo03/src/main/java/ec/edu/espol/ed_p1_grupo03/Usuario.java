@@ -144,4 +144,8 @@ public class Usuario implements Serializable {
         return sb.toString();
     }
 
+    public void setVehiculos(LinkedList<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+    
 }

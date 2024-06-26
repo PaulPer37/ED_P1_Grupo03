@@ -32,10 +32,13 @@ import javafx.stage.Stage;
  */
 
 public class EditarController implements Initializable {
-    
+    Vehiculo v=new Vehiculo();
+    App clas=new App();
+    Usuario usuario;
     /**
      * Initializes the controller class.
      */
+    
     private Vehiculo vehiculoSeleccionado;
     private Map<String, Vehiculo> vehiculoMap;
     LinkedList<Vehiculo> listacarros;
@@ -67,10 +70,12 @@ public class EditarController implements Initializable {
     private Button guardar;
     @FXML
     private Text texto1;
+    @FXML
+    private Button serviciosb;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        App clas=new App();
-        Usuario usuario = clas.getUsuarioActual();
+        
+        usuario = clas.getUsuarioActual();
         listacarros = cargarListaCarros("vehiculos"+usuario.getID()+".txt");
         vehiculoMap = new HashMap<>();
         // TODO
@@ -103,21 +108,37 @@ public class EditarController implements Initializable {
         App.setRoot("Eleccion");
     }
     
-    @FXML
+@FXML
     private void guardar(MouseEvent event) {
-        String marca = marcaStr.getText();
-        String modelo= modeloStr.getText();
-        Integer year = Integer.parseInt(yearint.getText());
-        String transmision = transmisiontext.getText();
-        String ubicacion = ubicacionStr.getText();
-        Double precio = Double.parseDouble(precioDou.getText());
-        Integer kilometraje = Integer.parseInt(kilometro.getText());
-        String motor =motorStr.getText();
-        Double peso = Double.parseDouble(pesoDour.getText());
-        //Vehiculo veditado = new Vehiculo(vehiculoSeleccionado.getId()), marca, modelo, year,precio,kilometraje,motor, transmision, peso, motor);
-        
-        
+        try {
+            String marca = marcaStr.getText();
+            String modelo = modeloStr.getText();
+            int year = Integer.parseInt(yearint.getText());
+            String transmision = transmisiontext.getText();
+            String ubicacion = ubicacionStr.getText();
+            double precio = Double.parseDouble(precioDou.getText());
+            int kilometraje = Integer.parseInt(kilometro.getText());
+            String motor = motorStr.getText();
+            double peso = Double.parseDouble(pesoDour.getText());
+
+            Vehiculo veditado = new Vehiculo(
+            vehiculoSeleccionado.getId(), marca, modelo, year, precio, 
+            kilometraje, motor, transmision, peso, 
+            ubicacion, vehiculoSeleccionado.getFotos(), null);
+            
+            
+
+            v.editarVehiculo(veditado, "vehiculos" + usuario.getID() + ".txt", usuario);
+            usuario.setVehiculos(listacarros);
+            texto1.setText("Vehículo editado correctamente.");
+            limpiarCamposEdicion();
+            habilitarCamposEdicion(false);
+            cambovehiculos.getSelectionModel().clearSelection();
+        } catch (NumberFormatException e) {
+            texto1.setText("Por favor, introduce valores válidos.");
+        }
     }
+    
 
     private void seleccionarVehiculo() {
         String selected = cambovehiculos.getSelectionModel().getSelectedItem();
@@ -152,6 +173,7 @@ public class EditarController implements Initializable {
         motorStr.setDisable(!habilitar);
         pesoDour.setDisable(!habilitar);
         guardar.setDisable(!habilitar);
+        serviciosb.setDisable(!habilitar);
     }
     
     private void limpiarCamposEdicion() {
@@ -164,6 +186,15 @@ public class EditarController implements Initializable {
         kilometro.clear();
         motorStr.clear();
         pesoDour.clear();
+    }
+
+    @FXML
+    private void añadirServicio(MouseEvent event) {
+        try {
+            App.setRoot("AñadirServicio");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
   

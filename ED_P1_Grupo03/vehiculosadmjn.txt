@@ -1,2 +1,5 @@
-id=19,Marca='21',Modelo='21',Año=21,Precio=21.0,Kilometraje=21,Motor='21',Transmision='null',Peso=0.0,Ubicacion='21',Fotos=,Servicios=
-id=20,Marca='e',Modelo='1',Año=1,Precio=1.0,Kilometraje=1,Motor='e',Transmision='e',Peso=1.0,Ubicacion='e',Fotos=ec/edu/espol/carros/calendario.png;ec/edu/espol/carros/2a.png,Servicios=
+id=19,Marca='21',Modelo='21',Aï¿½o=21,Precio=21.0,Kilometraje=21,Motor='21',Transmision='null',Peso=0.0,Ubicacion='21',Fotos=,Servicios=
+id=20,Marca='e',Modelo='1',Aï¿½o=1,Precio=1.0,Kilometraje=1,Motor='e',Transmision='e',Peso=1.0,Ubicacion='e',Fotos=ec/edu/espol/carros/calendario.png;ec/edu/espol/carros/2a.png,Servicios=
+
+id=19,Marca='21',Modelo='21',AÃ±o=0,Precio=21.0,Kilometraje=21,Motor='21',Transmision='null',Peso=0.0,Ubicacion='21',Fotos=,Servicios=
+id=20,Marca='Ferrari',Modelo='32',AÃ±o=2024,Precio=1.0,Kilometraje=1,Motor='e',Transmision='null',Peso=0.0,Ubicacion='e',Fotos=,Servicios=
