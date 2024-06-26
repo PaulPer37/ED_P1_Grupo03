@@ -107,7 +107,7 @@ public class Usuario implements Serializable {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }    
     }
 
     public static void guardarUsuario(Usuario usuario) {

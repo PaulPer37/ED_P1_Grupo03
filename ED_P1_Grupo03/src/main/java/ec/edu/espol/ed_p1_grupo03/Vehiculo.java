@@ -69,7 +69,6 @@ public class Vehiculo  {
     //vehiculos que ya tienen id: mas que todo para los que estan en el txt
     public Vehiculo(String id, String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
         this.id= id;
-        this.id = id;
         this.marca = marca;
         this.modelo = modelo;
         this.year = year;
@@ -355,6 +354,7 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
                     texto.append(";");
                 }
             }
+            if(vh.servicio!=null){
             texto.append(",");
             for (int i = 0; i < vh.servicio.size(); i++) {
                 Servicio serv = vh.servicio.get(i);
@@ -365,6 +365,7 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
                 if (i < vh.servicio.size() - 1) {
                     texto.append(";");
                 }
+            }
             }
             bw.newLine();
             bw.write(texto.toString());
@@ -440,15 +441,52 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
         
     }
     public static void guardarVehiculoEnArchivo(Vehiculo vehiculo, String nombreArchivo) {
+        //crearCarro(vehiculo,nombreArchivo);
+        
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo, true))) {
             writer.write(vehiculo.toString());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
     
-        
-        
+    public  String formatoGuardarCarro(Vehiculo vh) {
+            StringBuilder texto = new StringBuilder();
+            texto.append(vh.id).append(",")
+                .append(vh.marca).append(",")
+                .append(vh.modelo).append(",")
+                .append(vh.year).append(",")
+                .append(vh.precio).append(",")
+                .append(vh.kilometraje).append(",")
+                .append(vh.motor).append(",")
+                .append(vh.transmision).append(",")
+                .append(vh.peso).append(",")
+                .append(vh.ubicacion).append(",");
+
+            for (int i = 0; i < vh.fotos.size(); i++) {
+                texto.append(vh.fotos.get(i));
+                if (i < vh.fotos.size() - 1) {
+                    texto.append(";");
+                }
+            }
+            if(vh.servicio!=null){
+            texto.append(",");
+            for (int i = 0; i < vh.servicio.size(); i++) {
+                Servicio serv = vh.servicio.get(i);
+                texto.append(serv.getFecha()).append("|")
+                     .append(serv.getDescripion()).append("|")
+                     .append(serv.getTiposervicio()).append("|")
+                     .append(serv.getCosto());
+                if (i < vh.servicio.size() - 1) {
+                    texto.append(";");
+                }
+            }
+            
+    }
+    
+     return texto.toString();   
+    }   
  
 }

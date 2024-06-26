@@ -27,7 +27,7 @@ public class InicioController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
+
     @FXML
     private TextField usuario;
 
@@ -53,7 +53,7 @@ public class InicioController implements Initializable {
         String con = contra.getText();
 
         Usuario usuarioActual = validarInicio(user, con);
-        if (usuarioActual != null) {
+        if (usuarioActual != null) {          
             System.out.println("Usuario válido");
             App.setUsuarioActual(usuarioActual);
             App.setRoot("Eleccion");
