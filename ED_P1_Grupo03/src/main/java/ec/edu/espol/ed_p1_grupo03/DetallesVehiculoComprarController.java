@@ -45,7 +45,7 @@ public class DetallesVehiculoComprarController implements Initializable {
     @FXML
     private Text volver;
     @FXML
-    private ListView<ImageView> listaImagenes;
+    private ImageView listaImagenes;
 
     public void initialize(URL url, ResourceBundle rb) {
         vehiculo = ComprarController.getSeleccionado(); // Obtener el vehículo desde tu método getSeleccionado()
@@ -81,22 +81,14 @@ public class DetallesVehiculoComprarController implements Initializable {
     }
 
     private void mostrarImagen() {
-        listaImagenes.getItems().clear();
-        URL imageUrl = getClass().getResource("/ec.edu.espol.carros/" + imagenes.get(pagina) + ".jpg");
+        String imagePath = "/ec.edu.espol.carros/" + imagenes.get(pagina) + ".jpg";
+        URL imageUrl = getClass().getResource(imagePath);
 
         if (imageUrl != null) {
-            // Convertir la URL a una cadena de texto si es necesario
-            String imagePath = imageUrl.toExternalForm();
-
-            // Usar la URL para cargar la imagen en un ImageView, por ejemplo
-            Image image = new Image(imagePath);
-            ImageView imageView = new ImageView(image);
-            listaImagenes.getItems().clear();
-            listaImagenes.getItems().add(imageView);
-            // Agregar el ImageView a tu escena o donde sea necesario
+            Image image = new Image(imageUrl.toExternalForm());
+            listaImagenes.setImage(image);
         } else {
-            System.err.println("No se encontró la imagen en el directorio 'carros'");
+            System.err.println("No se encontró la imagen: " + imagePath);
         }
-
     }
 }

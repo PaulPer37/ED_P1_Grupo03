@@ -80,9 +80,9 @@ public class ComprarController implements Initializable {
         });
         seleccionar.setOnMouseClicked(event -> {
             try {
-                if (seleccionado != null) {
-                    seleccionar(event);
-                }
+
+                seleccionar(event);
+
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -219,10 +219,10 @@ public class ComprarController implements Initializable {
 
     @FXML
     private void seleccionar(MouseEvent event) throws IOException {
-        try {
-            App.setRoot("DetallesVehiculoComprar");
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        if (seleccionado != null) {
+            App.setRoot("Eleccion)");
+        } else {
+            System.out.println("No se ha seleccionado ningún vehículo");
         }
     }
 
