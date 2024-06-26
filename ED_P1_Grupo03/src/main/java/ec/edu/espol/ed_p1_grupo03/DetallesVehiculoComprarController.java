@@ -47,12 +47,17 @@ public class DetallesVehiculoComprarController implements Initializable {
     @FXML
     private ListView<ImageView> listaImagenes;
 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        vehiculo = ComprarController.getSeleccionado(); // Obtener el vehículo desde tu método getSeleccionado()
+        vehiculo = App.getCarrocomprar(); // Obtener el vehículo desde tu método getSeleccionado()
         if (vehiculo != null) {
             imagenes = vehiculo.getFotos(); // Obtener las imágenes del vehículo si vehiculo no es nulo
-            mostrarDetalles();
-            mostrarImagen();
+            if (!imagenes.isEmpty()) {
+                mostrarDetalles();
+                mostrarImagen();
+            } else {
+                System.err.println("El vehículo no tiene imágenes.");
+            }
         }
     }
 
@@ -81,22 +86,23 @@ public class DetallesVehiculoComprarController implements Initializable {
     }
 
     private void mostrarImagen() {
-        listaImagenes.getItems().clear();
-        URL imageUrl = getClass().getResource("/ec.edu.espol.carros/" + imagenes.get(pagina) + ".jpg");
-
-        if (imageUrl != null) {
-            // Convertir la URL a una cadena de texto si es necesario
-            String imagePath = imageUrl.toExternalForm();
-
-            // Usar la URL para cargar la imagen en un ImageView, por ejemplo
-            Image image = new Image(imagePath);
-            ImageView imageView = new ImageView(image);
+        if (pagina >= 0 && pagina < imagenes.size()) {
             listaImagenes.getItems().clear();
-            listaImagenes.getItems().add(imageView);
-            // Agregar el ImageView a tu escena o donde sea necesario
-        } else {
-            System.err.println("No se encontró la imagen en el directorio 'carros'");
-        }
+            String imagenPath = imagenes.get(pagina);
+            System.out.println("Intentando cargar imagen: " + imagenPath);
+            URL imageUrl = getClass().getResource("/" + imagenPath);
 
+            if (imageUrl != null) {
+                String imagePath = imageUrl.toExternalForm();
+                Image image = new Image(imagePath);
+                ImageView imageView = new ImageView(image);
+                listaImagenes.getItems().clear();
+                listaImagenes.getItems().add(imageView);
+            } else {
+                System.err.println("No se encontró la imagen en la ruta: " + imagenPath);
+            }
+        } else {
+            System.err.println("Índice de imagen fuera de límites: " + pagina);
+        }
     }
 }

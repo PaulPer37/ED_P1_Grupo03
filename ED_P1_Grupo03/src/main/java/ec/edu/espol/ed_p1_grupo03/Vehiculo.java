@@ -290,6 +290,12 @@ public String toString() {
                     case "Motor":
                         motor = value.substring(1, value.length() - 1);
                         break;
+                    case "Transmision":
+                        transmision = value.equals("null") ? null : value.substring(1, value.length() - 1);
+                        break;
+                    case "Peso":
+                        peso = Double.parseDouble(value);
+                        break;
                     case "Ubicacion":
                         ubicacion = value.substring(1, value.length() - 1);
                         break;
@@ -314,11 +320,9 @@ public String toString() {
     return listaVehiculos;
 }
 
-private static void parseFotos(String fotosStr, LinkedList<String> fotos) {
-    int start = fotosStr.indexOf('[');
-    int end = fotosStr.lastIndexOf(']');
-    if (start != -1 && end != -1 && end > start + 1) {
-        String[] fotosArray = fotosStr.substring(start + 1, end).split(";");
+private static void parseFotos(String value, LinkedList<String> fotos) {
+    if (!value.isEmpty()) {
+        String[] fotosArray = value.split(";");
         for (String foto : fotosArray) {
             fotos.addLast(foto.trim());
         }

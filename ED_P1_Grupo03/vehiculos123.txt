@@ -2,4 +2,5 @@ id=17,Marca='21',Modelo='1',Año=1,Precio=21.0,Kilometraje=1,Motor='1',Transmisio
 id=18,Marca='3',Modelo='3',Año=3,Precio=3.0,Kilometraje=3,Motor='3',Transmision='null',Peso=0.0,Ubicacion='3',Fotos=,Servicios=
 id=24,Marca='30',Modelo='2',Año=23,Precio=30.0,Kilometraje=40,Motor='23',Transmision='null',Peso=0.0,Ubicacion='23',Fotos=,Servicios=
 id=25,Marca='33',Modelo='33',Año=33,Precio=33.0,Kilometraje=33,Motor='33',Transmision='null',Peso=0.0,Ubicacion='33',Fotos=,Servicios=
-id=26,Marca='1',Modelo='1',Año=1,Precio=1.0,Kilometraje=1,Motor='1',Transmision='1',Peso=1.0,Ubicacion='1',Fotos=ec/edu/espol/carros/toyotacorolla20151.jpeg,Servicios=
+id=26,Marca='1',Modelo='1',Año=1,Precio=1.0,Kilometraje=1,Motor='1',Transmision='null',Peso=0.0,Ubicacion='1',Fotos=,Servicios=
+id=27,Marca='66',Modelo='66',Año=66,Precio=66.0,Kilometraje=66,Motor='66',Transmision='66',Peso=66.0,Ubicacion='66',Fotos=ec/edu/espol/carros/2a.png,Servicios=

@@ -35,11 +35,7 @@ public class ComprarController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private static Vehiculo seleccionado;
-
-    public static Vehiculo getSeleccionado() {
-        return seleccionado;
-    }
+    
     @FXML
     private ComboBox<String> marcas;
     @FXML
@@ -78,15 +74,7 @@ public class ComprarController implements Initializable {
             }
 
         });
-        seleccionar.setOnMouseClicked(event -> {
-            try {
-                if (seleccionado != null) {
-                    seleccionar(event);
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+        
 
         // Use relative path to load the car data
         String rutaArchivoCarros = "carros.txt";
@@ -110,7 +98,13 @@ public class ComprarController implements Initializable {
             label.setOnMouseClicked(event -> {
                 // Acción al hacer clic en el vehículo (redireccionar, por ejemplo)
                 System.out.println("Clic en " + vehiculo.getMarca() + " " + vehiculo.getModelo());
-                this.seleccionado = vehiculo;
+                App.setCarrocomprar(vehiculo);
+                System.out.println(vehiculo);
+                try {
+                    App.setRoot("DetallesVehiculoComprar");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             });
             lista.getItems().add(label); // Agregar el Label creado a la lista
         });
