@@ -107,7 +107,7 @@ public class Usuario implements Serializable {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }    
     }
 
     public static void guardarUsuario(Usuario usuario) {
@@ -144,4 +144,8 @@ public class Usuario implements Serializable {
         return sb.toString();
     }
 
+    public void setVehiculos(LinkedList<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+    
 }

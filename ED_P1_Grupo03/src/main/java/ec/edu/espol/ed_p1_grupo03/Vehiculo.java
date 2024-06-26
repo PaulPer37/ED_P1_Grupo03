@@ -67,9 +67,9 @@ public class Vehiculo  {
         this.servicio = new LinkedList<>();  
     }
     //vehiculos que ya tienen id: mas que todo para los que estan en el txt
-    public Vehiculo(String id, String marca, String modelo, int year, double precio, int kilometraje, String motor, String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
+    public Vehiculo(String id, String marca, String modelo, int year, double precio, int kilometraje, String motor, 
+            String transmision, double peso, String ubicacion, LinkedList<String> fotos, LinkedList<Servicio> servicio) {
         this.id= id;
-        this.id = id;
         this.marca = marca;
         this.modelo = modelo;
         this.year = year;
@@ -355,6 +355,7 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
                     texto.append(";");
                 }
             }
+            if(vh.servicio!=null){
             texto.append(",");
             for (int i = 0; i < vh.servicio.size(); i++) {
                 Servicio serv = vh.servicio.get(i);
@@ -365,6 +366,7 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
                 if (i < vh.servicio.size() - 1) {
                     texto.append(";");
                 }
+            }
             }
             bw.newLine();
             bw.write(texto.toString());
@@ -401,54 +403,95 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
 
     return Integer.toString(lastId);
 }
-    public static void editarVehiculo(String id, String nuevamarca, String nuevomodelo, int nuevoyear, double nuevoprecio, int nuevakilometraje, String nuevomotor, String nuevatransmision, double peso, String nuevaubicacion, LinkedList<String> nuevafotos, LinkedList<Servicio> nuevaservicio, String nomfile){
+    public void editarVehiculo(Vehiculo veditado, String nomfile,Usuario user){
         LinkedList<Vehiculo> vehiculosUser = cargarListaCarros(nomfile);
         for(Vehiculo v : vehiculosUser){
-            if(v.id.equals(id)){
-                if(nuevamarca != null){
-                    v.setMarca(nuevamarca);
+            if(v.id.equals(veditado.getId())){
+                if(veditado.getMarca() != null){
+                    v.setMarca(veditado.getMarca());
                 }
-                if(nuevomodelo != null){
-                    v.setModelo(nuevomodelo);
+                if(veditado.getModelo() != null){
+                    v.setModelo(veditado.getModelo());
                 }
-                if(null != Integer.toString(nuevoyear)){
-                    v.setYear(nuevoyear);
+                if(null != Integer.toString(veditado.getYear())){
+                    v.setYear(veditado.getYear());
                 }
-                if(Double.toString(nuevoprecio) != null){
-                    v.setPrecio(nuevoprecio);
+                if(Double.toString(v.getPrecio()) != null){
+                    v.setPrecio(v.getPrecio());
                 }
-                if(Integer.toString(nuevakilometraje) != null){
-                    v.setKilometraje(nuevakilometraje);
+                if(Integer.toString(veditado.getKilometraje()) != null){
+                    v.setKilometraje(veditado.getKilometraje());
                 }
-                if(nuevomotor != null){
-                    v.setMotor(nuevomotor);
+                if(veditado.getMotor() != null){
+                    v.setMotor(veditado.getMotor());
                 }
-                if(nuevatransmision != null){
-                    v.setTransmision(nuevatransmision);
+                if(veditado.getTransmision() != null){
+                    v.setTransmision(veditado.getTransmision());
                 }
-                if(nuevaubicacion != null){
-                    v.setUbicacion(nuevaubicacion);
+                if(veditado.getUbicacion() != null){
+                    v.setUbicacion(veditado.getUbicacion());
                 }
-                if(nuevafotos != null){
-                    v.setFotos(nuevafotos);
+                if(veditado.getFotos() != null){
+                    v.setFotos(veditado.getFotos());
                 }
-                if(nuevaservicio != null){
-                    v.setServicio(nuevaservicio);
+                if(veditado.getServicio() != null){
+                    v.setServicio((LinkedList<Servicio>) veditado.getServicio());
                 }
             }
+            
+            }
+        for(Vehiculo vh : vehiculosUser){
+            guardarVehiculoEnArchivo(vh, nomfile);
         }
         
     }
     public static void guardarVehiculoEnArchivo(Vehiculo vehiculo, String nombreArchivo) {
+        //crearCarro(vehiculo,nombreArchivo);
+        
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo, true))) {
             writer.write(vehiculo.toString());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
     
-        
-        
+    public  String formatoGuardarCarro(Vehiculo vh) {
+            StringBuilder texto = new StringBuilder();
+            texto.append(vh.id).append(",")
+                .append(vh.marca).append(",")
+                .append(vh.modelo).append(",")
+                .append(vh.year).append(",")
+                .append(vh.precio).append(",")
+                .append(vh.kilometraje).append(",")
+                .append(vh.motor).append(",")
+                .append(vh.transmision).append(",")
+                .append(vh.peso).append(",")
+                .append(vh.ubicacion).append(",");
+
+            for (int i = 0; i < vh.fotos.size(); i++) {
+                texto.append(vh.fotos.get(i));
+                if (i < vh.fotos.size() - 1) {
+                    texto.append(";");
+                }
+            }
+            if(vh.servicio!=null){
+            texto.append(",");
+            for (int i = 0; i < vh.servicio.size(); i++) {
+                Servicio serv = vh.servicio.get(i);
+                texto.append(serv.getFecha()).append("|")
+                     .append(serv.getDescripion()).append("|")
+                     .append(serv.getTiposervicio()).append("|")
+                     .append(serv.getCosto());
+                if (i < vh.servicio.size() - 1) {
+                    texto.append(";");
+                }
+            }
+            
+    }
+    
+     return texto.toString();   
+    }   
  
 }

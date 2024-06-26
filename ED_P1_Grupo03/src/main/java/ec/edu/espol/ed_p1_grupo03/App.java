@@ -18,7 +18,8 @@ public class App extends Application {
     private static Usuario usuarioActual;
     private static Vehiculo carroeditar;
     private static Vehiculo carrocomprar;
-
+    private LinkedList<Servicio> listaServicio = new LinkedList<>();
+    
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Inicio"), 640, 480);
@@ -63,6 +64,14 @@ public class App extends Application {
 
     public static void setCarrocomprar(Vehiculo carrocomprar) {
         App.carrocomprar = carrocomprar;
+    }
+
+    public LinkedList<Servicio> getListaServicio() {
+        return listaServicio;
+    }
+
+    public void setListaServicio(LinkedList<Servicio> listaServicio) {
+        this.listaServicio = listaServicio;
     }
     
 
