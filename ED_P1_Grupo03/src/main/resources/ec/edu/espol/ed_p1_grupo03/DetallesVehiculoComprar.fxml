@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.DetallesVehiculoComprarController">
+   <children>
+      <VBox layoutX="59.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Marca" />
+            <Label fx:id="marcaDetalle" />
+            <Label text="Modelo" />
+            <Label fx:id="modeloDetalle" />
+            <Label text="Transmision" />
+            <Label fx:id="transmisionDetalle" />
+            <Label text="Año" />
+            <Label fx:id="añoDetalle" />
+            <Label text="Precio" />
+            <Label fx:id="precioDetalle" />
+         </children>
+      </VBox>
+      <ListView fx:id="listaImagenes" accessibleRole="IMAGE_VIEW" layoutX="252.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="siguiente" layoutX="372.0" layoutY="292.0" mnemonicParsing="false" onAction="#siguiente" prefHeight="26.0" prefWidth="79.0" text="Siguiente" />
+      <Button fx:id="anterior" layoutX="252.0" layoutY="292.0" mnemonicParsing="false" onAction="#anterior" prefHeight="26.0" prefWidth="90.0" text="Anterior" />
+      <Text fx:id="volver" fill="#29327b" layoutX="14.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" underline="true" />
+   </children>
+</AnchorPane>
