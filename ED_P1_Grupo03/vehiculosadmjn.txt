@@ -3,3 +3,7 @@ id=20,Marca='e',Modelo='1',A�o=1,Precio=1.0,Kilometraje=1,Motor='e',Transmisio
 
 id=19,Marca='21',Modelo='21',Año=0,Precio=21.0,Kilometraje=21,Motor='21',Transmision='null',Peso=0.0,Ubicacion='21',Fotos=,Servicios=
 id=20,Marca='Ferrari',Modelo='32',Año=2024,Precio=1.0,Kilometraje=1,Motor='e',Transmision='null',Peso=0.0,Ubicacion='e',Fotos=,Servicios=
+id=19,Marca='21',Modelo='21',Año=0,Precio=21.0,Kilometraje=21,Motor='21',Transmision='null',Peso=0.0,Ubicacion='21',Fotos=,Servicios=
+id=20,Marca='Ferrari',Modelo='323',Año=2000,Precio=1.0,Kilometraje=13221,Motor='45',Transmision='Manual',Peso=1.0,Ubicacion='Quito',Fotos=,Servicios=23 julio|Cambio aceite|MANTENIMIENTO|30.0
+id=19,Marca='21',Modelo='21',Año=0,Precio=21.0,Kilometraje=21,Motor='21',Transmision='null',Peso=0.0,Ubicacion='21',Fotos=,Servicios=
+id=20,Marca='Ferrari',Modelo='323',Año=2000,Precio=1.0,Kilometraje=13221,Motor='45',Transmision='Manual',Peso=0.0,Ubicacion='Quito',Fotos=,Servicios=23 julio|Cambio aceite|MANTENIMIENTO|30.0

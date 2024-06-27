@@ -18,7 +18,7 @@ public class App extends Application {
     private static Usuario usuarioActual;
     private static Vehiculo carroeditar;
     private static Vehiculo carrocomprar;
-    private LinkedList<Servicio> listaServicio = new LinkedList<>();
+    private static LinkedList<Servicio> listaServicio = new LinkedList<>();
     
     @Override
     public void start(Stage stage) throws IOException {

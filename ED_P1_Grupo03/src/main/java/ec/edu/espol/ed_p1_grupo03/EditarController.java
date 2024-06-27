@@ -11,8 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -124,7 +127,7 @@ public class EditarController implements Initializable {
             Vehiculo veditado = new Vehiculo(
             vehiculoSeleccionado.getId(), marca, modelo, year, precio, 
             kilometraje, motor, transmision, peso, 
-            ubicacion, vehiculoSeleccionado.getFotos(), null);
+            ubicacion, vehiculoSeleccionado.getFotos(), clas.getListaServicio());
             
             
 
@@ -191,11 +194,17 @@ public class EditarController implements Initializable {
     @FXML
     private void añadirServicio(MouseEvent event) {
         try {
-            App.setRoot("AñadirServicio");
-        } catch (IOException e) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AñadirServicio.fxml"));
+            Parent root=fxmlLoader.load();
+            Stage stage=new Stage();
+            stage.setTitle("AñadirServicio");
+            stage.setScene(new Scene(root));
+            stage.show();
+            
+        }catch(IOException e){
             e.printStackTrace();
         }
-    }
     
   
+    }
 }
