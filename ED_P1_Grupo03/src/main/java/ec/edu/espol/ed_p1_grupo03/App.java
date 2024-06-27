@@ -19,6 +19,15 @@ public class App extends Application {
     private static Vehiculo carroeditar;
     private static Vehiculo carrocomprar;
     private static LinkedList<Servicio> listaServicio = new LinkedList<>();
+    private static String estado=null;
+
+    public static void setEstado(String estado) {
+        App.estado = estado;
+    }
+
+    public static String getEstado() {
+        return estado;
+    }
     
     @Override
     public void start(Stage stage) throws IOException {
@@ -66,12 +75,12 @@ public class App extends Application {
         App.carrocomprar = carrocomprar;
     }
 
-    public LinkedList<Servicio> getListaServicio() {
+    public static LinkedList<Servicio> getListaServicio() {
         return listaServicio;
     }
 
-    public void setListaServicio(LinkedList<Servicio> listaServicio) {
-        this.listaServicio = listaServicio;
+    public static void setListaServicio(LinkedList<Servicio> listaServicio2) {
+        listaServicio = listaServicio2;
     }
     
 

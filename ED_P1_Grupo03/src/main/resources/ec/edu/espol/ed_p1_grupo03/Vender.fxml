@@ -33,5 +33,6 @@
       <ImageView fx:id="ver" fitHeight="150.0" fitWidth="200.0" layoutX="394.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="crear" layoutX="142.0" layoutY="348.0" mnemonicParsing="false" text="Crear" />
       <Text fx:id="volver" fill="#5553b8" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" underline="true" />
+      <Button fx:id="servicios" layoutX="23.0" layoutY="310.0" mnemonicParsing="false" onAction="#servicio" text="Añadir servicio" />
    </children>
 </AnchorPane>

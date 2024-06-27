@@ -68,11 +68,20 @@ public class VenderController implements Initializable {
     private LinkedList<String> fotos;
     @FXML
     private Text volver;
+    @FXML
+    private Button servicios;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fotos = new LinkedList<>();
         cargar.setOnAction(event -> cargarImagen());
+        servicios.setOnAction(event -> {
+            try {
+                servicio();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         crear.setOnAction(event -> crearVehiculo());
         volver.setOnMouseClicked(event -> {
             try {
@@ -138,8 +147,9 @@ public class VenderController implements Initializable {
             String ubicacionStr = ubicacion.getText();
 
             // Crear el vehículo con la lista de fotos
+            
             Vehiculo vehiculo = new Vehiculo(marcaStr, modeloStr, anioInt, precioDouble, kilometrajeInt,
-                    motorStr, transmisionStr, pesoDouble, ubicacionStr, fotos);
+                    motorStr, transmisionStr, pesoDouble, ubicacionStr, fotos,App.getListaServicio());
             Usuario usuarioActual = App.getUsuarioActual();
             if (usuarioActual != null) {
                 usuarioActual.agregarVehiculo(vehiculo);
@@ -147,7 +157,7 @@ public class VenderController implements Initializable {
                 Vehiculo.guardarVehiculoEnArchivo(vehiculo, rutaArchivoCarros);
             }
             limpiarCampos();
-
+            
             System.out.println("Vehículo creado y guardado correctamente");
 
         } catch (NumberFormatException e) {
@@ -174,6 +184,11 @@ public class VenderController implements Initializable {
     @FXML
     void volverLink(MouseEvent event) throws IOException {
         App.setRoot("Eleccion");
+    }
+    @FXML
+    void servicio() throws IOException {
+        App.setEstado("vender");
+        App.setRoot("AñadirServicio");
     }
 }
     

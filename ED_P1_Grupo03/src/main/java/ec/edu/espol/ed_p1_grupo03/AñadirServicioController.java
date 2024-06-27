@@ -66,14 +66,19 @@ public class AñadirServicioController implements Initializable {
         String fechaText = fecha.getText();
         Double costoText = Double.parseDouble(costo.getText());
         Servicio servicio = new Servicio(fechaText,descripcionText, tipoServicio, costoText);
-        ap.getListaServicio().addFirst(servicio);
+        App.getListaServicio().addLast(servicio);
         
         limpiarCamposEdicion();
         
     }
         
     void volverLink(MouseEvent event) throws IOException {
-        App.setRoot("Editar");
+        if(App.getEstado().equals("editar")){
+            App.setRoot("Editar");
+        }
+        if(App.getEstado().equals("vender")){
+            App.setRoot("Vender");
+        }
     }
     
     private void limpiarCamposEdicion() {

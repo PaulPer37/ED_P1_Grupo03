@@ -193,6 +193,7 @@ public class EditarController implements Initializable {
 
     @FXML
     private void añadirServicio(MouseEvent event) {
+        App.setEstado("editar");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AñadirServicio.fxml"));
             Parent root=fxmlLoader.load();
