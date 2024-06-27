@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -58,6 +59,14 @@ public class DetallesVehiculoComprarController implements Initializable {
                 System.err.println("El vehículo no tiene imágenes.");
             }
         }
+        volver.setOnMouseClicked(event -> {
+            try {
+                volverLink(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
     }
 
     private void mostrarDetalles() {
@@ -100,5 +109,9 @@ public class DetallesVehiculoComprarController implements Initializable {
         } else {
             System.err.println("Índice de imagen fuera de límites: " + pagina);
         }
+    }
+    @FXML
+    void volverLink(MouseEvent event) throws IOException {
+        App.setRoot("Eleccion");
     }
 }

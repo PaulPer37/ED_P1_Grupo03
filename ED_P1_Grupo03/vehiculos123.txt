@@ -4,3 +4,4 @@ id=24,Marca='30',Modelo='2',Año=23,Precio=30.0,Kilometraje=40,Motor='23',Transmi
 id=25,Marca='33',Modelo='33',Año=33,Precio=33.0,Kilometraje=33,Motor='33',Transmision='null',Peso=0.0,Ubicacion='33',Fotos=,Servicios=
 id=26,Marca='1',Modelo='1',Año=1,Precio=1.0,Kilometraje=1,Motor='1',Transmision='1',Peso=1.0,Ubicacion='1',Fotos=ec/edu/espol/carros/toyotacorolla20151.jpeg,Servicios=
 id=27,Marca='22',Modelo='22',Año=22,Precio=22.0,Kilometraje=22,Motor='22',Transmision='22',Peso=22.0,Ubicacion='22',Fotos=ec/edu/espol/carros/SubaruImpreza20151.jpeg,Servicios=21|s|REPARACION|22.0
+id=28,Marca='11',Modelo='11',Año=11,Precio=11.0,Kilometraje=11,Motor='11',Transmision='11',Peso=11.0,Ubicacion='11',Fotos=ec/edu/espol/carros/ChevroletMalibu20162.jpeg;ec/edu/espol/carros/2a.png,Servicios=
