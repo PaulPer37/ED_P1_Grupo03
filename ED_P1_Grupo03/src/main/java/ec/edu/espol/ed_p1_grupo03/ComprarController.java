@@ -35,11 +35,7 @@ public class ComprarController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private static Vehiculo seleccionado;
-
-    public static Vehiculo getSeleccionado() {
-        return seleccionado;
-    }
+    
     @FXML
     private ComboBox<String> marcas;
     @FXML
@@ -110,7 +106,7 @@ public class ComprarController implements Initializable {
             label.setOnMouseClicked(event -> {
                 // Acción al hacer clic en el vehículo (redireccionar, por ejemplo)
                 System.out.println("Clic en " + vehiculo.getMarca() + " " + vehiculo.getModelo());
-                this.seleccionado = vehiculo;
+                App.setCarrocomprar(vehiculo);
             });
             lista.getItems().add(label); // Agregar el Label creado a la lista
         });
@@ -219,8 +215,8 @@ public class ComprarController implements Initializable {
 
     @FXML
     private void seleccionar(MouseEvent event) throws IOException {
-        if (seleccionado != null) {
-            App.setRoot("Eleccion)");
+        if (App.getCarrocomprar() != null) {
+            App.setRoot("DetallesVehiculoComprar");
         } else {
             System.out.println("No se ha seleccionado ningún vehículo");
         }

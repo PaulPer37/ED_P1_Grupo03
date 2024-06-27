@@ -23,11 +23,10 @@ import javafx.scene.text.Text;
  * @author jkrom
  */
 public class DetallesVehiculoComprarController implements Initializable {
-
     private Vehiculo vehiculo;
     private int pagina = 0;
     private LinkedList<String> imagenes = new LinkedList<>();
-
+    
     @FXML
     private Label marcaDetalle;
     @FXML
@@ -47,12 +46,17 @@ public class DetallesVehiculoComprarController implements Initializable {
     @FXML
     private ImageView listaImagenes;
 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        vehiculo = ComprarController.getSeleccionado(); // Obtener el vehículo desde tu método getSeleccionado()
+        vehiculo = App.getCarrocomprar(); // Obtener el vehículo desde tu método getSeleccionado()
         if (vehiculo != null) {
             imagenes = vehiculo.getFotos(); // Obtener las imágenes del vehículo si vehiculo no es nulo
-            mostrarDetalles();
-            mostrarImagen();
+            if (!imagenes.isEmpty()) {
+                mostrarDetalles();
+                mostrarImagen();
+            } else {
+                System.err.println("El vehículo no tiene imágenes.");
+            }
         }
     }
 
@@ -81,14 +85,20 @@ public class DetallesVehiculoComprarController implements Initializable {
     }
 
     private void mostrarImagen() {
-        String imagePath = "/ec.edu.espol.carros/" + imagenes.get(pagina) + ".jpg";
-        URL imageUrl = getClass().getResource(imagePath);
+        if (pagina >= 0 && pagina < imagenes.size()) {
+            String imagenPath = imagenes.get(pagina);
+            System.out.println("Intentando cargar imagen: " + imagenPath);
+            URL imageUrl = getClass().getResource("/" + imagenPath);
 
-        if (imageUrl != null) {
-            Image image = new Image(imageUrl.toExternalForm());
-            listaImagenes.setImage(image);
+            if (imageUrl != null) {
+                String imagePath = imageUrl.toExternalForm();
+                Image image = new Image(imagePath);
+                listaImagenes.setImage(image);
+            } else {
+                System.err.println("No se encontró la imagen en la ruta: " + imagenPath);
+            }
         } else {
-            System.err.println("No se encontró la imagen: " + imagePath);
+            System.err.println("Índice de imagen fuera de límites: " + pagina);
         }
     }
 }
