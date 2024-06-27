@@ -106,7 +106,7 @@
          </font>
       </TextField>
       <ComboBox fx:id="cambovehiculos" layoutX="251.0" layoutY="18.0" prefHeight="25.0" prefWidth="165.0" />
-      <Button fx:id="guardar" layoutX="354.0" layoutY="333.0" mnemonicParsing="false" onMouseDragged="#guardar" text="Guardar">
+      <Button fx:id="guardar" layoutX="354.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#guardar" text="Guardar">
          <font>
             <Font name="Serif Regular" size="14.0" />
          </font>
