@@ -8,11 +8,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -20,23 +26,28 @@ import javafx.scene.text.Text;
  * @author DHAMAR
  */
 public class AñadirServicioController implements Initializable {
+    App ap = new App();
     
-    @FXML
-    private Text volver;
     @FXML
     private ComboBox<TipoServicio> tiposerv;
     @FXML
     private TextField descripcion;
     @FXML
-    private TextField decha;
-    @FXML
     private TextField costo;
+    @FXML
+    private Text volver;
+    private Servicio servicioAñadido;
+    private TextArea texto1;
+    @FXML
+    private TextField fecha;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
         volver.setOnMouseClicked(event -> {
             try {
                 volverLink(event);
@@ -46,14 +57,29 @@ public class AñadirServicioController implements Initializable {
         });
         tiposerv.getItems().setAll(TipoServicio.values());
         
-    }    
+    }
 
     @FXML
     private void guardar(MouseEvent event) {
-    
+        TipoServicio tipoServicio = tiposerv.getValue();
+        String descripcionText = descripcion.getText();
+        String fechaText = fecha.getText();
+        Double costoText = Double.parseDouble(costo.getText());
+        Servicio servicio = new Servicio(fechaText,descripcionText, tipoServicio, costoText);
+        ap.getListaServicio().addFirst(servicio);
+        
+        limpiarCamposEdicion();
+        
     }
-    
+        
     void volverLink(MouseEvent event) throws IOException {
         App.setRoot("Editar");
     }
+    
+    private void limpiarCamposEdicion() {
+        descripcion.clear();
+        fecha.clear();
+        costo.clear();
+        tiposerv.getSelectionModel().clearSelection();
+    }  
 }
