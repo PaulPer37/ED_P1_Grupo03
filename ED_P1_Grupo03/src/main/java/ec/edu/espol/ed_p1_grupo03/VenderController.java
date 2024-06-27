@@ -157,7 +157,7 @@ public class VenderController implements Initializable {
                 Vehiculo.guardarVehiculoEnArchivo(vehiculo, rutaArchivoCarros);
             }
             limpiarCampos();
-            
+            App.setListaServicio(new LinkedList<>());
             System.out.println("Vehículo creado y guardado correctamente");
 
         } catch (NumberFormatException e) {
