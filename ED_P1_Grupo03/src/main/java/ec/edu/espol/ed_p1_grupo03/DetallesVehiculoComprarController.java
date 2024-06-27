@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -48,6 +49,30 @@ public class DetallesVehiculoComprarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        volver.setOnMouseClicked(event -> {
+            try {
+                volverLink(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        });
+        siguiente.setOnMouseClicked(event -> {
+            try {
+                siguiente(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        });
+        anterior.setOnMouseClicked(event -> {
+            try {
+                anterior(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        });
         vehiculo = App.getCarrocomprar(); // Obtener el vehículo desde tu método getSeleccionado()
         if (vehiculo != null) {
             imagenes = vehiculo.getFotos(); // Obtener las imágenes del vehículo si vehiculo no es nulo
@@ -69,7 +94,7 @@ public class DetallesVehiculoComprarController implements Initializable {
     }
 
     @FXML
-    private void siguiente(ActionEvent event) {
+    private void siguiente(MouseEvent event)throws IOException {
         if ((pagina + 1) < imagenes.size()) {
             pagina++;
             mostrarImagen();
@@ -77,7 +102,7 @@ public class DetallesVehiculoComprarController implements Initializable {
     }
 
     @FXML
-    private void anterior(ActionEvent event) {
+    private void anterior(MouseEvent event)throws IOException{
         if (pagina > 0) {
             pagina--;
             mostrarImagen();
@@ -100,5 +125,8 @@ public class DetallesVehiculoComprarController implements Initializable {
         } else {
             System.err.println("Índice de imagen fuera de límites: " + pagina);
         }
+    }
+    void volverLink(MouseEvent event) throws IOException {
+        App.setRoot("Comprar");
     }
 }
