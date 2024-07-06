@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -7,17 +11,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="ec.edu.espol.ed_p1_grupo03.CrearUserController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.CrearUserController">
    <children>
-      <Label layoutX="264.0" layoutY="24.0" text="Crear Usuario" />
-      <Label layoutX="157.0" layoutY="58.0" text="Nombre de Usuario:" />
-      <TextField fx:id="usuario" layoutX="157.0" layoutY="87.0" />
-      <Label layoutX="157.0" layoutY="131.0" text="Contraseña:" />
-      <Label layoutX="157.0" layoutY="219.0" text="Confirmar Contraseña:" />
-      <Button fx:id="crearuser" layoutX="157.0" layoutY="304.0" mnemonicParsing="false" onAction="#crearuser" text="Crear" />
-      <Text fx:id="volver" fill="#363186" layoutX="32.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" underline="true" />
-      <PasswordField fx:id="contra" layoutX="158.0" layoutY="163.0" />
-      <PasswordField fx:id="contra2" layoutX="159.0" layoutY="257.0" />
+      <Label layoutX="247.0" layoutY="17.0" text="Crear Usuario">
+         <font>
+            <Font name="Serif Regular" size="18.0" />
+         </font></Label>
+      <Label layoutX="157.0" layoutY="58.0" text="Nombre de Usuario:">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font></Label>
+      <TextField fx:id="usuario" layoutX="157.0" layoutY="87.0">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font></TextField>
+      <Label layoutX="157.0" layoutY="131.0" text="Contraseña:">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font></Label>
+      <Label layoutX="157.0" layoutY="219.0" text="Confirmar Contraseña:">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font></Label>
+      <Button fx:id="crearuser" layoutX="157.0" layoutY="304.0" mnemonicParsing="false" onAction="#crearuser" text="Crear" textAlignment="CENTER">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font></Button>
+      <Text fx:id="volver" fill="#363186" layoutX="32.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" underline="true">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font></Text>
+      <PasswordField fx:id="contra" layoutX="158.0" layoutY="163.0">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font></PasswordField>
+      <PasswordField fx:id="contra2" layoutX="159.0" layoutY="257.0">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font></PasswordField>
    </children>
 </AnchorPane>
