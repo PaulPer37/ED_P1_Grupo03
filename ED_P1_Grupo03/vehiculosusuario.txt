@@ -1,0 +1,1 @@
+id=29,Marca='chevrolet',Modelo='10',Año=10,Precio=2222.0,Kilometraje=11,Motor='010',Transmision='1111',Peso=11.0,Ubicacion='111',Fotos=ec/edu/espol/carros/2a.png;ec/edu/espol/carros/NissanAltima20192.jpeg,Servicios=21/22|reparar led|REPARACION|222.0
