@@ -204,20 +204,9 @@ public class EditarController implements Initializable {
     }
 
     @FXML
-    private void añadirServicio(MouseEvent event) {
+    private void añadirServicio(MouseEvent event) throws IOException {
         App.setEstado("editar");
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AñadirServicio.fxml"));
-            Parent root=fxmlLoader.load();
-            Stage stage=new Stage();
-            stage.setTitle("AñadirServicio");
-            stage.setScene(new Scene(root));
-            stage.show();
-            
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    
-  
+        App.setRoot("AñadirServicio");
+        
     }
 }
