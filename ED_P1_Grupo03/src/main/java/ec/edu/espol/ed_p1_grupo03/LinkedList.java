@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.ed_p1_grupo03;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Spliterator;
@@ -326,5 +327,16 @@ public class LinkedList<E> implements List<E>{
             }
             right = left;
         } while (swapped);
+    }
+    public LinkedList<E> copy() {
+        LinkedList<E> newList = new LinkedList<>();
+        NodeList<E> current = this.header;
+
+        while (current != null) {
+            newList.addLast(current.getContent());
+            current = current.getNext();
+        }
+
+        return newList;
     }
 }

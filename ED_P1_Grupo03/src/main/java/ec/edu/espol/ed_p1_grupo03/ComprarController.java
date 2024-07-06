@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -32,10 +33,6 @@ import javafx.scene.text.Text;
  */
 public class ComprarController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    
     @FXML
     private ComboBox<String> marcas;
     @FXML
@@ -59,10 +56,13 @@ public class ComprarController implements Initializable {
     @FXML
     private Text volver;
     private LinkedList<Vehiculo> vehiculos;
+    private LinkedList<Vehiculo> vehiculosOriginales;
     private int pagina;
     private final int items = 5;
     @FXML
     private Button seleccionar;
+    @FXML
+    private Button resetButton; // Agrega esto
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,23 +72,22 @@ public class ComprarController implements Initializable {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-
         });
         seleccionar.setOnMouseClicked(event -> {
             try {
-
                 seleccionar(event);
-
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
 
-        // Use relative path to load the car data
         String rutaArchivoCarros = "carros.txt";
         vehiculos = Vehiculo.cargarListaCarros(rutaArchivoCarros);
+        vehiculosOriginales = Vehiculo.cargarListaCarros(rutaArchivoCarros); // Guardar la lista original
         llenarComboBoxes(rutaArchivoCarros);
         mostrarvehiculo();
+
+        resetButton.setOnMouseClicked(event -> resetFiltros()); // Configura el evento del botón reset
     }
 
     void volverLink(MouseEvent event) throws IOException {
@@ -99,16 +98,13 @@ public class ComprarController implements Initializable {
         lista.getItems().clear();
         LinkedList<Vehiculo> paginaActual = vehiculos.sublist(pagina * items, (pagina + 1) * items);
         System.out.println(paginaActual);
-        // Mostrar los vehículos en el ListView
         paginaActual.forEach(vehiculo -> {
             Label label = new Label(vehiculo.getMarca() + "-" + vehiculo.getModelo() + " - $" + vehiculo.getPrecio());
-            // Configurar evento de clic en cada vehículo
             label.setOnMouseClicked(event -> {
-                // Acción al hacer clic en el vehículo (redireccionar, por ejemplo)
                 System.out.println("Clic en " + vehiculo.getMarca() + " " + vehiculo.getModelo());
                 App.setCarrocomprar(vehiculo);
             });
-            lista.getItems().add(label); // Agregar el Label creado a la lista
+            lista.getItems().add(label);
         });
     }
 
@@ -126,7 +122,6 @@ public class ComprarController implements Initializable {
         for (Vehiculo vehiculo : vehiculos) {
             boolean pasaFiltro = true;
 
-            // Aplicar filtros
             if (marca != null && !marca.equals(vehiculo.getMarca())) {
                 pasaFiltro = false;
             }
@@ -146,21 +141,18 @@ public class ComprarController implements Initializable {
                 pasaFiltro = false;
             }
 
-            // Agregar vehículo a la lista filtrada si pasa todos los filtros
             if (pasaFiltro) {
                 filtrados.addLast(vehiculo);
             }
         }
 
-        // Ordenar según el criterio seleccionado
         if ("Precio".equals(ordenarPor)) {
             filtrados.sort((v1, v2) -> Double.compare(v1.getPrecio(), v2.getPrecio()));
         } else if ("Kilometraje".equals(ordenarPor)) {
             filtrados.sort((v1, v2) -> Integer.compare(v1.getKilometraje(), v2.getKilometraje()));
         }
 
-        vehiculos = filtrados; // Actualizar la lista de vehículos original
-
+        vehiculos = filtrados;
         pagina = 0;
         mostrarvehiculo();
     }
@@ -209,7 +201,6 @@ public class ComprarController implements Initializable {
         kilomin.getItems().addAll(kilometrajesSet);
         kilomax.getItems().addAll(kilometrajesSet);
 
-        // Añadir opciones de ordenamiento
         orden.getItems().addAll("Precio", "Kilometraje");
     }
 
@@ -222,4 +213,18 @@ public class ComprarController implements Initializable {
         }
     }
 
+    @FXML
+    private void resetFiltros() {
+        marcas.setValue(null);
+        modelos.setValue(null);
+        preciomin.setValue(null);
+        preciomax.setValue(null);
+        kilomin.setValue(null);
+        kilomax.setValue(null);
+        orden.setValue(null);
+        
+        vehiculos = vehiculosOriginales.copy(); // Restaurar la lista original
+        pagina = 0;
+        mostrarvehiculo(); // Mostrar la lista de vehículos original
+    }
 }

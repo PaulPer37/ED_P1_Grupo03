@@ -111,36 +111,49 @@ public class EditarController implements Initializable {
         App.setRoot("Eleccion");
     }
     
-@FXML
+    @FXML
     private void guardar(MouseEvent event) {
-        try {
-            String marca = marcaStr.getText();
-            String modelo = modeloStr.getText();
-            int year = Integer.parseInt(yearint.getText());
-            String transmision = transmisiontext.getText();
-            String ubicacion = ubicacionStr.getText();
-            double precio = Double.parseDouble(precioDou.getText());
-            int kilometraje = Integer.parseInt(kilometro.getText());
-            String motor = motorStr.getText();
-            double peso = Double.parseDouble(pesoDour.getText());
+    try {
+        String marca = marcaStr.getText();
+        String modelo = modeloStr.getText();
+        int year = Integer.parseInt(yearint.getText());
+        String transmision = transmisiontext.getText();
+        String ubicacion = ubicacionStr.getText();
+        double precio = Double.parseDouble(precioDou.getText());
+        int kilometraje = Integer.parseInt(kilometro.getText());
+        String motor = motorStr.getText();
+        double peso = Double.parseDouble(pesoDour.getText());
 
-            Vehiculo veditado = new Vehiculo(
+        Vehiculo veditado = new Vehiculo(
             vehiculoSeleccionado.getId(), marca, modelo, year, precio, 
             kilometraje, motor, transmision, peso, 
             ubicacion, vehiculoSeleccionado.getFotos(), clas.getListaServicio());
-            
-            
-
-            v.editarVehiculo(veditado, "vehiculos" + usuario.getID() + ".txt", usuario);
-            usuario.setVehiculos(listacarros);
-            texto1.setText("Vehículo editado correctamente.");
-            limpiarCamposEdicion();
-            habilitarCamposEdicion(false);
-            cambovehiculos.getSelectionModel().clearSelection();
-        } catch (NumberFormatException e) {
-            texto1.setText("Por favor, introduce valores válidos.");
+        
+        v.editarVehiculo(veditado, "vehiculos" + usuario.getID() + ".txt", usuario);
+        
+        // Actualizar la lista de vehículos
+        listacarros = cargarListaCarros("vehiculos" + usuario.getID() + ".txt");
+        
+        // Limpiar y llenar nuevamente la ComboBox
+        cambovehiculos.getItems().clear();
+        vehiculoMap.clear();
+        for (Vehiculo v : listacarros) {
+            String textItem = v.getMarca() + " - " + v.getModelo() + " (" + v.getYear() + ")";
+            cambovehiculos.getItems().add(textItem);
+            vehiculoMap.put(textItem, v);
         }
+        
+        // Seleccionar el vehículo editado
+        String selectedItem = veditado.getMarca() + " - " + veditado.getModelo() + " (" + veditado.getYear() + ")";
+        cambovehiculos.getSelectionModel().select(selectedItem);
+        
+        texto1.setText("Vehículo editado correctamente.");
+        limpiarCamposEdicion();
+        habilitarCamposEdicion(false);
+    } catch (NumberFormatException e) {
+        texto1.setText("Por favor, introduce valores válidos.");
     }
+}
     
 
     private void seleccionarVehiculo() {

@@ -112,6 +112,6 @@ public class DetallesVehiculoComprarController implements Initializable {
     }
     @FXML
     void volverLink(MouseEvent event) throws IOException {
-        App.setRoot("Eleccion");
+        App.setRoot("Comprar");
     }
 }
