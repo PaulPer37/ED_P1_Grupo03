@@ -444,9 +444,8 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
             }
             
             }
-        for(Vehiculo vh : vehiculosUser){
-            guardarVehiculoEnArchivo(vh, nomfile);
-        }
+        user.setVehiculos(vehiculosUser);
+        user.guardarVehiculos();
         
     }
     public static void guardarVehiculoEnArchivo(Vehiculo vehiculo, String nombreArchivo) {

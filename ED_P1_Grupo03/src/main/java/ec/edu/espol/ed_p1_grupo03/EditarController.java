@@ -36,7 +36,6 @@ import javafx.stage.Stage;
 
 public class EditarController implements Initializable {
     Vehiculo v=new Vehiculo();
-    App clas=new App();
     Usuario usuario;
     /**
      * Initializes the controller class.
@@ -78,7 +77,7 @@ public class EditarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        usuario = clas.getUsuarioActual();
+        usuario = App.getUsuarioActual();
         listacarros = cargarListaCarros("vehiculos"+usuario.getID()+".txt");
         vehiculoMap = new HashMap<>();
         // TODO
@@ -127,7 +126,7 @@ public class EditarController implements Initializable {
         Vehiculo veditado = new Vehiculo(
             vehiculoSeleccionado.getId(), marca, modelo, year, precio, 
             kilometraje, motor, transmision, peso, 
-            ubicacion, vehiculoSeleccionado.getFotos(), clas.getListaServicio());
+            ubicacion, vehiculoSeleccionado.getFotos(), App.getListaServicio());
         
         v.editarVehiculo(veditado, "vehiculos" + usuario.getID() + ".txt", usuario);
         

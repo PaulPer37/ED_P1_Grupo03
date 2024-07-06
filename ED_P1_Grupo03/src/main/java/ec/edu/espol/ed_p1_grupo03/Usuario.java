@@ -98,7 +98,7 @@ public class Usuario implements Serializable {
         }
     }
 
-    private void guardarVehiculos() {
+    public void guardarVehiculos() {
         String nombreArchivo = "vehiculos" + this.ID + ".txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
             for (Vehiculo vehiculo : vehiculos) {
