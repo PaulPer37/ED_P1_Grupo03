@@ -194,10 +194,12 @@ public class EditarController implements Initializable {
             motorStr.setText(vehiculoSeleccionado.getMotor());
             pesoDour.setText(String.valueOf(vehiculoSeleccionado.getPeso()));
             habilitarCamposEdicion(true);
+            mostrarIconos(false);
             
         } else {
             limpiarCamposEdicion();
             habilitarCamposEdicion(false);
+            mostrarIconos(false);
         }
     }
 
@@ -226,6 +228,7 @@ public class EditarController implements Initializable {
         kilometro.clear();
         motorStr.clear();
         pesoDour.clear();
+        imagenes.setImage(null);
     }
 
     @FXML

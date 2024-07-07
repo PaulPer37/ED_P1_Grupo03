@@ -9,8 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ec.edu.espol.ed_p1_grupo03.EditarServicioController">
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.EditarServicioController">
    <children>
       <TextField fx:id="decrip" layoutX="303.0" layoutY="187.0">
          <font>
@@ -72,11 +71,6 @@
       <Text layoutX="136.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Servicio">
          <font>
             <Font name="Serif Regular" size="14.0" />
-         </font>
-      </Text>
-      <Text fx:id="volver" layoutX="39.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" textAlignment="CENTER" underline="true">
-         <font>
-            <Font name="Serif Regular" size="13.0" />
          </font>
       </Text>
    </children>

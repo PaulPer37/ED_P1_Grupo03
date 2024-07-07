@@ -36,7 +36,6 @@ public class EditarServicioController implements Initializable {
     //private ComboBox<TipoServicio> TipoServicio;
     @FXML
     private ComboBox<TipoServicio> TipoServ;
-    @FXML
     private Text volver;
 
     /**
