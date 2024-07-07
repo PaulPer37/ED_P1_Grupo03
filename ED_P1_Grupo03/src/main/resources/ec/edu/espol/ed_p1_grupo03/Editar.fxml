@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -7,119 +9,145 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.EditarController">
+<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.EditarController">
    <children>
-      <Text fx:id="volver" fill="#373da1" layoutX="22.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" underline="true" />
-      <Text fx:id="texto" layoutX="83.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escoge tu Vehiculo: " wrappingWidth="155.13671875">
+      <Text fx:id="volver" fill="#373da1" layoutX="65.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" underline="true" />
+      <Text fx:id="texto" layoutX="221.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escoge tu Vehiculo: " wrappingWidth="155.13671875">
          <font>
             <Font name="Serif Regular" size="18.0" />
          </font>
       </Text>
-      <Label layoutX="30.0" layoutY="94.0" text="Marca: ">
+      <Label layoutX="104.0" layoutY="85.0" text="Marca: ">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="30.0" layoutY="159.0" text="Modelo:">
+      <Label layoutX="104.0" layoutY="150.0" text="Modelo:">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="30.0" layoutY="214.0" text="Año:">
+      <Label layoutX="104.0" layoutY="205.0" text="Año:">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="311.0" layoutY="94.0" text="Precio:">
+      <Label layoutX="385.0" layoutY="85.0" text="Precio:">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="311.0" layoutY="159.0" text="Kilometraje:">
+      <Label layoutX="385.0" layoutY="150.0" text="Kilometraje:">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="311.0" layoutY="214.0" text="Motor:">
+      <Label layoutX="385.0" layoutY="205.0" text="Motor:">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="23.0" layoutY="273.0" text="Transmision:">
+      <Label layoutX="97.0" layoutY="264.0" text="Transmision:">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="311.0" layoutY="273.0" text="Peso:">
+      <Label layoutX="385.0" layoutY="264.0" text="Peso:">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="328.0" text="Ubicación:">
+      <Label layoutX="99.0" layoutY="319.0" text="Ubicación:">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="marcaStr" layoutX="103.0" layoutY="90.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="marcaStr" layoutX="177.0" layoutY="81.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="modeloStr" layoutX="103.0" layoutY="155.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="modeloStr" layoutX="177.0" layoutY="146.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="yearint" layoutX="103.0" layoutY="210.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="yearint" layoutX="177.0" layoutY="201.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="transmisiontext" layoutX="103.0" layoutY="269.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="transmisiontext" layoutX="177.0" layoutY="260.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="ubicacionStr" layoutX="103.0" layoutY="324.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="ubicacionStr" layoutX="177.0" layoutY="315.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="precioDou" layoutX="402.0" layoutY="90.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="precioDou" layoutX="476.0" layoutY="81.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="kilometro" layoutX="402.0" layoutY="155.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="kilometro" layoutX="476.0" layoutY="146.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="motorStr" layoutX="402.0" layoutY="210.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="motorStr" layoutX="476.0" layoutY="201.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="pesoDour" layoutX="402.0" layoutY="269.0" prefHeight="28.0" prefWidth="176.0">
+      <TextField fx:id="pesoDour" layoutX="476.0" layoutY="260.0" prefHeight="28.0" prefWidth="176.0">
          <font>
             <Font name="Serif Regular" size="15.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="cambovehiculos" layoutX="251.0" layoutY="18.0" prefHeight="25.0" prefWidth="165.0" />
-      <Button fx:id="guardar" layoutX="354.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#guardar" text="Guardar">
+      <ComboBox fx:id="cambovehiculos" layoutX="389.0" layoutY="30.0" prefHeight="25.0" prefWidth="165.0" />
+      <Button fx:id="guardar" layoutX="428.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#guardar" text="Guardar">
          <font>
             <Font name="Serif Regular" size="14.0" />
          </font>
       </Button>
-      <Text fx:id="texto1" layoutX="39.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="512.13671875">
+      <Text fx:id="texto1" layoutX="53.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="512.13671875">
          <font>
             <Font name="Serif Regular" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="serviciosb" layoutX="441.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#añadirServicio" prefHeight="28.0" prefWidth="115.0" text="Añadir Servicios">
+      <Button fx:id="serviciosb" layoutX="515.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#añadirServicio" prefHeight="28.0" prefWidth="115.0" text="Editar Servicios">
          <font>
             <Font name="Serif Regular" size="14.0" />
          </font>
       </Button>
+      <Button fx:id="editar" layoutX="90.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#editarImagen" text="Editar Imagen">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="cargar" fitHeight="28.0" fitWidth="34.0" layoutX="517.0" layoutY="455.0" onMouseClicked="#cargarImagen" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../carros/subir.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="eliminar" fitHeight="28.0" fitWidth="33.0" layoutX="512.0" layoutY="408.0" onMouseClicked="#eliminarImagen" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../carros/eliminar.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="flecha2" fitHeight="28.0" fitWidth="28.0" layoutX="498.0" layoutY="511.0" onMouseClicked="#siguiente" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../carros/flecha.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="fecha1" fitHeight="28.0" fitWidth="28.0" layoutX="232.0" layoutY="511.0" onMouseClicked="#anterior" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@../carros/flecha.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imagenes" fitHeight="150.0" fitWidth="210.0" layoutX="276.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

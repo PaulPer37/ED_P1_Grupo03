@@ -5,8 +5,13 @@
 package ec.edu.espol.ed_p1_grupo03;
 
 import static ec.edu.espol.ed_p1_grupo03.Vehiculo.cargarListaCarros;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -20,12 +25,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -37,10 +44,11 @@ import javafx.stage.Stage;
 public class EditarController implements Initializable {
     Vehiculo v=new Vehiculo();
     Usuario usuario;
+    //private LinkedList<String> imagenes = new LinkedList<>();
     /**
      * Initializes the controller class.
      */
-    
+    private int pagina;
     private Vehiculo vehiculoSeleccionado;
     Map<String, Vehiculo> vehiculoMap;
     LinkedList<Vehiculo> listacarros;
@@ -74,9 +82,22 @@ public class EditarController implements Initializable {
     private Text texto1;
     @FXML
     private Button serviciosb;
+    @FXML
+    private Button editar;
+    @FXML
+    private ImageView cargar;
+    @FXML
+    private ImageView eliminar;
+    //private LinkedList<String> fotos;
+    @FXML
+    private ImageView flecha2;
+    @FXML
+    private ImageView fecha1;
+    @FXML
+    private ImageView imagenes;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        mostrarIconos(false);
         usuario = App.getUsuarioActual();
         listacarros = cargarListaCarros("vehiculos"+usuario.getID()+".txt");
         vehiculoMap = new HashMap<>();
@@ -122,7 +143,7 @@ public class EditarController implements Initializable {
         int kilometraje = Integer.parseInt(kilometro.getText());
         String motor = motorStr.getText();
         double peso = Double.parseDouble(pesoDour.getText());
-        //LinkedList<Servicio> serv =App.getVehiculoSelect().getServicio();
+        
         Vehiculo veditado = new Vehiculo(
             vehiculoSeleccionado.getId(), marca, modelo, year, precio, 
             kilometraje, motor, transmision, peso, 
@@ -152,12 +173,13 @@ public class EditarController implements Initializable {
     } catch (NumberFormatException e) {
         texto1.setText("Por favor, introduce valores válidos.");
     }
+    mostrarIconos(false);
 }
     
 
     private void seleccionarVehiculo() {
         String selected = cambovehiculos.getSelectionModel().getSelectedItem();
-        //Vehiculo vehiculoSeleccionado = vehiculoMap.get(selected);
+        
         vehiculoSeleccionado = vehiculoMap.get(selected);
         App.setVehiculoSelect(vehiculoSeleccionado);
         if (vehiculoSeleccionado != null) {
@@ -190,6 +212,7 @@ public class EditarController implements Initializable {
         pesoDour.setDisable(!habilitar);
         guardar.setDisable(!habilitar);
         serviciosb.setDisable(!habilitar);
+        editar.setDisable(!habilitar);
     }
     
     private void limpiarCamposEdicion() {
@@ -219,5 +242,100 @@ public class EditarController implements Initializable {
         // Muestra la nueva ventana
         newStage.show();
         
+    }
+
+    @FXML
+    private void editarImagen(MouseEvent event) {
+        mostrarIconos(true);
+        mostrarImagen();
+        
+        
+    }
+
+    @FXML
+    private void cargarImagen(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(cargar.getScene().getWindow());
+        if (file != null) {
+            try {
+                // Guardar la imagen en el directorio de recursos relativo
+                String resourceDir = "src/main/resources/ec/edu/espol/carros/";
+
+                // Copiar la imagen al directorio de recursos
+                File destDir = new File(resourceDir);
+                if (!destDir.exists()) {
+                    destDir.mkdirs();
+                }
+
+                // Obtener solo el nombre del archivo sin la ruta completa
+                String fileName = file.getName();
+
+                // Crear ruta relativa dentro del proyecto
+                String relativePath = "ec/edu/espol/carros/" + fileName;
+
+                // Copiar el archivo al directorio de recursos
+                Path sourcePath = file.toPath();
+                Path destinationPath = Paths.get(resourceDir + fileName);
+                Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Agregar la ruta relativa a la lista de fotos
+                vehiculoSeleccionado.getFotos().addLast(relativePath);
+
+                System.out.println("Imagen guardada en: " + relativePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Error al guardar la imagen.");
+            }
+        } else {
+            System.out.println("No se seleccionó ninguna imagen.");
+        }
+        mostrarImagen();
+    }
+
+    @FXML
+    private void eliminarImagen(MouseEvent event) {
+        vehiculoSeleccionado.getFotos().remove(pagina);
+    }
+
+    @FXML
+    private void siguiente(MouseEvent event) {
+        if ((pagina + 1) < vehiculoSeleccionado.getFotos().size()) {
+            pagina++;
+            mostrarImagen();
+        }
+    }
+
+    @FXML
+    private void anterior(MouseEvent event) {
+        if (pagina > 0) {
+            pagina--;
+            mostrarImagen();
+        }
+    }
+    
+    void mostrarIconos (boolean halilitar){
+        cargar.setVisible(halilitar);
+        eliminar.setVisible(halilitar);
+        fecha1.setVisible(halilitar);
+        flecha2.setVisible(halilitar);
+        imagenes.setVisible(halilitar);
+    }
+    void mostrarImagen(){
+        if (pagina >= 0 && pagina < vehiculoSeleccionado.getFotos().size()) {
+            String imagenPath = vehiculoSeleccionado.getFotos().get(pagina);
+            System.out.println("Intentando cargar imagen: " + imagenPath);
+            URL imageUrl = getClass().getResource("/" + imagenPath);
+
+            if (imageUrl != null) {
+                String imagePath = imageUrl.toExternalForm();
+                Image image = new Image(imagePath);
+                imagenes.setImage(image);
+            } else {
+                System.err.println("No se encontró la imagen en la ruta: " + imagenPath);
+            }
+        } else {
+            System.err.println("Índice de imagen fuera de límites: " + pagina);
+        }
     }
 }
