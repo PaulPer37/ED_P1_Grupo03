@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -63,6 +64,10 @@ public class ComprarController implements Initializable {
     private Button seleccionar;
     @FXML
     private Button resetButton; // Agrega esto
+    @FXML
+    private CheckBox Mantenimiento;
+    @FXML
+    private CheckBox Reparacion;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -81,6 +86,9 @@ public class ComprarController implements Initializable {
                 ex.printStackTrace();
             }
         });
+// Configuración de eventos para los CheckBox
+        Mantenimiento.selectedProperty().addListener((observable, oldValue, newValue) -> filtro(null));
+        Reparacion.selectedProperty().addListener((observable, oldValue, newValue) -> filtro(null));
 
         String rutaArchivoCarros = "carros.txt";
         vehiculos = Vehiculo.cargarListaCarros(rutaArchivoCarros);
@@ -118,11 +126,39 @@ public class ComprarController implements Initializable {
         String kmMin = kilomin.getValue();
         String kmMax = kilomax.getValue();
         String ordenarPor = orden.getValue();
+        boolean seleccionarMantenimiento = Mantenimiento.isSelected();
+        boolean seleccionarReparacion = Reparacion.isSelected();
 
         LinkedList<Vehiculo> filtrados = new LinkedList<>();
         for (Vehiculo vehiculo : vehiculos) {
             boolean pasaFiltro = true;
+// Filtrar por mantenimiento si está seleccionado el CheckBox
+            if (seleccionarMantenimiento) {
+                boolean tieneMantenimiento = false;
+                for (Servicio servicio : vehiculo.getServicio()) {
+                    if (servicio.getTiposervicio() == TipoServicio.MANTENIMIENTO) {
+                        tieneMantenimiento = true;
+                        break;
+                    }
+                }
+                if (!tieneMantenimiento) {
+                    pasaFiltro = false;
+                }
+            }
 
+            // Filtrar por reparación si está seleccionado el CheckBox
+            if (seleccionarReparacion) {
+                boolean tieneReparacion = false;
+                for (Servicio servicio : vehiculo.getServicio()) {
+                    if (servicio.getTiposervicio() == TipoServicio.REPARACION) {
+                        tieneReparacion = true;
+                        break;
+                    }
+                }
+                if (!tieneReparacion) {
+                    pasaFiltro = false;
+                }
+            }
             if (marca != null && !marca.equals(vehiculo.getMarca())) {
                 pasaFiltro = false;
             }
@@ -205,7 +241,6 @@ public class ComprarController implements Initializable {
         orden.getItems().addAll("Precio", "Kilometraje");
     }
 
-    @FXML
     private void seleccionar(MouseEvent event) throws IOException {
         if (App.getCarrocomprar() != null) {
             App.setRoot("DetallesVehiculoComprar");
@@ -223,9 +258,12 @@ public class ComprarController implements Initializable {
         kilomin.setValue(null);
         kilomax.setValue(null);
         orden.setValue(null);
-        
+
         vehiculos = vehiculosOriginales.copy(); // Restaurar la lista original
         pagina = 0;
         mostrarvehiculo(); // Mostrar la lista de vehículos original
+        // Desmarcar los CheckBox Mantenimiento y Reparacion
+        Mantenimiento.setSelected(false);
+        Reparacion.setSelected(false);
     }
 }
