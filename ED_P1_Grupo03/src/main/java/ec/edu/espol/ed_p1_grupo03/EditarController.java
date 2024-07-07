@@ -42,7 +42,7 @@ public class EditarController implements Initializable {
      */
     
     private Vehiculo vehiculoSeleccionado;
-    private Map<String, Vehiculo> vehiculoMap;
+    Map<String, Vehiculo> vehiculoMap;
     LinkedList<Vehiculo> listacarros;
     @FXML
     private Text volver;
@@ -159,6 +159,7 @@ public class EditarController implements Initializable {
         String selected = cambovehiculos.getSelectionModel().getSelectedItem();
         //Vehiculo vehiculoSeleccionado = vehiculoMap.get(selected);
         vehiculoSeleccionado = vehiculoMap.get(selected);
+        App.setVehiculoSelect(vehiculoSeleccionado);
         if (vehiculoSeleccionado != null) {
             marcaStr.setText(vehiculoSeleccionado.getMarca());
             modeloStr.setText(vehiculoSeleccionado.getModelo());
@@ -206,7 +207,17 @@ public class EditarController implements Initializable {
     @FXML
     private void añadirServicio(MouseEvent event) throws IOException {
         App.setEstado("editar");
-        App.setRoot("AñadirServicio");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("EditarServicio.fxml"));
+        Parent root = fxmlLoader.load();
+
+        // Crea una nueva escena y un nuevo Stage (ventana)
+        Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setTitle("Editar Servicio");
+        newStage.setScene(scene);
+
+        // Muestra la nueva ventana
+        newStage.show();
         
     }
 }

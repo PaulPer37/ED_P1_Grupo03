@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ec.edu.espol.ed_p1_grupo03.EditarServicioController">
+   <children>
+      <TextField fx:id="decrip" layoutX="303.0" layoutY="187.0">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </TextField>
+      <Text layoutX="136.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="136.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="fecha" layoutX="303.0" layoutY="248.0">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </TextField>
+      <Text layoutX="136.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Costo">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="costo" layoutX="303.0" layoutY="306.0">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </TextField>
+      <Button layoutX="457.0" layoutY="357.0" mnemonicParsing="false" onMouseClicked="#guardar" text="Guardar" textAlignment="CENTER">
+         <font>
+            <Font name="Serif Bold Italic" size="13.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="serviciosUser" layoutX="307.0" layoutY="80.0" prefHeight="26.0" prefWidth="177.0" />
+      <Text layoutX="94.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccionar servicio a editar" wrappingWidth="158.197265625">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+         <effect>
+            <DisplacementMap>
+               <mapData>
+                  <FloatMap />
+               </mapData>
+            </DisplacementMap>
+         </effect>
+      </Text>
+      <Text layoutX="254.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar Servicio" underline="true">
+         <font>
+            <Font name="Serif Regular" size="18.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Text>
+      <ComboBox fx:id="TipoServ" layoutX="304.0" layoutY="136.0" prefHeight="25.0" prefWidth="177.0" />
+      <Text layoutX="136.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Servicio">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="volver" layoutX="39.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="Serif Regular" size="13.0" />
+         </font>
+      </Text>
+   </children>
+   <effect>
+      <ColorAdjust brightness="-0.03" contrast="0.07" />
+   </effect>
+</AnchorPane>

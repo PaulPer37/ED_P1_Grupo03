@@ -172,7 +172,16 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public E remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        NodeList<E> current = header;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+            if (current == null || current.getNext() == null) {
+                throw new IndexOutOfBoundsException("Índice fuera de rango");
+            }
+        }
+        E removedData = current.getNext().getContent();
+        current.setNext(current.getNext().getNext());
+        return removedData;
     }
 
     @Override

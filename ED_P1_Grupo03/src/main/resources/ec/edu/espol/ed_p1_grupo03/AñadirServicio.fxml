@@ -50,7 +50,7 @@
             <Font name="Serif Regular" size="14.0" />
          </font>
       </Button>
-      <Text layoutX="56.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar Servicio">
+      <Text layoutX="56.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Servicio">
          <font>
             <Font name="Serif Regular" size="18.0" />
          </font>

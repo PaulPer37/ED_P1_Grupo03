@@ -13,7 +13,7 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-
+    private static Vehiculo vehiculoSelect;
     private static Scene scene;
     private static Usuario usuarioActual;
     private static Vehiculo carroeditar;
@@ -81,6 +81,23 @@ public class App extends Application {
 
     public static void setListaServicio(LinkedList<Servicio> listaServicio2) {
         listaServicio = listaServicio2;
+    }
+
+    public static Vehiculo getVehiculoSelect() {
+        return vehiculoSelect;
+    }
+
+    public static void setVehiculoSelect(Vehiculo vehiculoSelect) {
+        App.vehiculoSelect = vehiculoSelect;
+    }
+    
+    
+    public static Scene getScene() {
+        return scene;
+    }
+
+    public static void setScene(Scene scene) {
+        App.scene = scene;
     }
     
 
