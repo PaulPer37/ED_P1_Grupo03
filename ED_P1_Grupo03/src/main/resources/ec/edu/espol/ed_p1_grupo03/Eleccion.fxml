@@ -7,22 +7,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E6E6FA;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.EleccionController">
+<AnchorPane id="AnchorPane" prefHeight="401.0" prefWidth="681.0" style="-fx-background-color: #E6E6FA;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.EleccionController">
    <children>
-      <Pane fx:id="vender" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ADD8E6;">
+      <Pane fx:id="vender" layoutY="86.0" prefHeight="165.0" prefWidth="167.0" style="-fx-background-color: #ADD8E6;">
          <children>
             <Label layoutX="62.0" layoutY="6.0" text="Vende tu Auto" textAlignment="CENTER" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="25.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../carros/HondaCivic20181.jpeg" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="comprar" layoutX="400.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD700;">
+      <Pane fx:id="comprar" layoutX="334.0" layoutY="85.0" prefHeight="166.0" prefWidth="167.0" style="-fx-background-color: #FFD700;">
          <children>
             <Label layoutX="62.0" layoutY="6.0" text="Compra tu Auto" textAlignment="CENTER" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="119.0" fitWidth="119.0" layoutX="25.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../carros/NissanAltima20192.jpeg" />
                </image>
@@ -30,12 +30,22 @@
          </children>
       </Pane>
       <Text fx:id="cerrar" fill="#393794" layoutX="8.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cerrar Sesión" underline="true" />
-      <Pane fx:id="editar" layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #89ac76;">
+      <Pane fx:id="editar" layoutX="167.0" layoutY="85.0" prefHeight="166.0" prefWidth="167.0" style="-fx-background-color: #89ac76;">
          <children>
             <Label layoutX="62.0" layoutY="6.0" text="Edita tus autos" textAlignment="CENTER" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="119.0" fitWidth="126.0" layoutX="25.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../carros/SubaruImpreza20152.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="remover" layoutX="501.0" layoutY="85.0" prefHeight="166.0" prefWidth="167.0" style="-fx-background-color: #cb3234;">
+         <children>
+            <Label layoutX="62.0" layoutY="6.0" text="Elimina tus Autos" textAlignment="CENTER" textFill="#e1d2d2" />
+            <ImageView fitHeight="80.0" fitWidth="134.0" layoutX="24.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../carros/ToyotaCamary023.jpeg" />
                </image>
             </ImageView>
          </children>

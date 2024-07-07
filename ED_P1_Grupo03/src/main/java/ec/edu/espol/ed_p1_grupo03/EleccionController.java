@@ -34,6 +34,8 @@ public class EleccionController implements Initializable {
     private Pane comprar;
     @FXML
     private Text cerrar;
+    @FXML
+    private Pane remover;
 
     
     @Override
@@ -66,6 +68,13 @@ public class EleccionController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        remover.setOnMouseClicked(event -> {
+            try {
+                removerLink(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }  
 
     @FXML
@@ -83,5 +92,9 @@ public class EleccionController implements Initializable {
     @FXML
     void editarLink(MouseEvent event) throws IOException {
         App.setRoot("Editar");
+    }
+    @FXML
+    void removerLink(MouseEvent event) throws IOException {
+        App.setRoot("Remover");
     }
 }

@@ -6,3 +6,4 @@ id=27,Marca='22',Modelo='22',Año=22,Precio=22.0,Kilometraje=22,Motor='22',Transm
 id=28,Marca='11',Modelo='11',Año=11,Precio=11.0,Kilometraje=11,Motor='11',Transmision='11',Peso=11.0,Ubicacion='11',Fotos=ec/edu/espol/carros/ChevroletMalibu20162.jpeg;ec/edu/espol/carros/2a.png,Servicios=
 id=29,Marca='chevrolet',Modelo='10',Año=10,Precio=2222.0,Kilometraje=11,Motor='010',Transmision='1111',Peso=11.0,Ubicacion='111',Fotos=ec/edu/espol/carros/2a.png;ec/edu/espol/carros/NissanAltima20192.jpeg,Servicios=21/22|reparar led|REPARACION|222.0
 id=30,Marca='che',Modelo='200',Año=322,Precio=500.0,Kilometraje=244,Motor='333',Transmision='23233r',Peso=2323.0,Ubicacion='gua',Fotos=,Servicios=
+id=31,Marca='00',Modelo='000',Año=0,Precio=0.0,Kilometraje=0,Motor='00',Transmision='00',Peso=0.0,Ubicacion='00',Fotos=ec/edu/espol/carros/ChevroletMalibu20162.jpeg;ec/edu/espol/carros/HondaCivic20181.jpeg,Servicios=

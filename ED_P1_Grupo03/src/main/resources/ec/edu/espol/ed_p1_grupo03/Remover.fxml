@@ -1,11 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.RemoverController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.RemoverController">
+    <children>
+      <ComboBox fx:id="cambovehiculos" layoutX="251.0" layoutY="18.0" prefHeight="25.0" prefWidth="165.0" />
+      <Button fx:id="borrar" layoutX="354.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#borrar" style="-fx-background-color: red;" text="Borrar" textFill="#eae0e0">
+         <font>
+            <Font name="Serif Regular" size="14.0" />
+         </font>
+      </Button>
+      <Text fx:id="texto1" layoutX="39.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="512.13671875">
+         <font>
+            <Font name="Serif Regular" size="18.0" />
+         </font>
+      </Text>
+      <VBox layoutX="59.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0">
+            <children>
+                <Label text="Marca" />
+                <Label fx:id="marcaDetalle" />
+                <Label text="Modelo" />
+                <Label fx:id="modeloDetalle" />
+                <Label text="Transmision" />
+                <Label fx:id="transmisionDetalle" />
+                <Label text="Año" />
+                <Label fx:id="añoDetalle" />
+                <Label text="Precio" />
+                <Label fx:id="precioDetalle" />
+            </children>
+        </VBox>
+        
+        <!-- Botones y otros elementos -->
+        <Button fx:id="siguiente" layoutX="372.0" layoutY="292.0" mnemonicParsing="false" onAction="#siguiente" prefHeight="26.0" prefWidth="79.0" text="Siguiente" />
+        <Button fx:id="anterior" layoutX="252.0" layoutY="292.0" mnemonicParsing="false" onAction="#anterior" prefHeight="26.0" prefWidth="90.0" text="Anterior" />
+        <Text fx:id="volver" fill="#29327b" layoutX="14.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver" underline="true" />
+        
+        <!-- ImageView para mostrar las imágenes del vehículo -->
+        <ImageView fx:id="listaImagenes" fitHeight="150.0" fitWidth="200.0" layoutX="252.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="109.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escoge el vehículo:" />
+   </children>
 </AnchorPane>
