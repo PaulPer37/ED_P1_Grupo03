@@ -5,4 +5,4 @@ id=20,Marca='Ferrari',Modelo='323',AÃ±o=2000,Precio=1.0,Kilometraje=13221,Motor=
 id=21,Marca='1',Modelo='1',Año=1,Precio=1.0,Kilometraje=1,Motor='1',Transmision='null',Peso=0.0,Ubicacion='1',Fotos=,Servicios=
 id=22,Marca='2',Modelo='2',Año=2,Precio=2.0,Kilometraje=2,Motor='2',Transmision='null',Peso=0.0,Ubicacion='2',Fotos=,Servicios=
 id=23,Marca='2',Modelo='2',Año=2,Precio=2.0,Kilometraje=2,Motor='2',Transmision='2',Peso=2.0,Ubicacion='2',Fotos=ec/edu/espol/carros/calendario.png,Servicios=
-id=29,Marca='chevrolet',Modelo='10',Año=10,Precio=2222.0,Kilometraje=11,Motor='010',Transmision='1111',Peso=11.0,Ubicacion='111',Fotos=ec/edu/espol/carros/2a.png;ec/edu/espol/carros/NissanAltima20192.jpeg,Servicios=21/22|reparar led|REPARACION|222.0
+id=29,Marca='chevrolet',Modelo='10',Año=10,Precio=2222.0,Kilometraje=11,Motor='010',Transmision='1111',Peso=11.0,Ubicacion='111',Fotos=ec/edu/espol/carros/2a.png,Servicios=21/22|reparar led|REPARACION|222.0

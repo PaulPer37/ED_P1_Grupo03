@@ -174,6 +174,7 @@ public class EditarController implements Initializable {
         texto1.setText("Por favor, introduce valores válidos.");
     }
     mostrarIconos(false);
+    Vehiculo.copiarVehiculosDeUsuarios("usuarios.txt", "carros.txt");
 }
     
 

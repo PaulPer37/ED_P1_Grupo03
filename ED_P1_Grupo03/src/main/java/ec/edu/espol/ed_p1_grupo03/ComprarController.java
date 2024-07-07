@@ -66,6 +66,7 @@ public class ComprarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Vehiculo.copiarVehiculosDeUsuarios("usuarios.txt", "carros.txt");
         volver.setOnMouseClicked(event -> {
             try {
                 volverLink(event);

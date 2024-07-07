@@ -165,6 +165,7 @@ public class VenderController implements Initializable {
             e.printStackTrace();
             System.out.println("Error en la conversión de texto a número.");
         }
+        Vehiculo.copiarVehiculosDeUsuarios("usuarios.txt", "carros.txt");
     }
 
     // Método para limpiar campos después de crear el vehículo

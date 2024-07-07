@@ -40,6 +40,7 @@ public class EleccionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Vehiculo.copiarVehiculosDeUsuarios("usuarios.txt", "carros.txt");
         vender.setOnMouseClicked(event -> {
             try {
                 venderLink(event);
