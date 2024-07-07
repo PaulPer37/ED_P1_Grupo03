@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Objects;
 
 /**
@@ -459,7 +460,51 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
         }
         
     }
-    
+    public static void vaciarArchivo(String nombreArchivo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
+            writer.write(""); // Esto vacía el contenido del archivo
+            System.out.println("Archivo " + nombreArchivo + " vaciado correctamente.");
+        } catch (IOException e) {
+            System.err.println("Error al intentar vaciar el archivo " + nombreArchivo + ": " + e.getMessage());
+        }
+    }
+
+    public static void copiarVehiculosDeUsuarios(String usuariosFile, String carrosFile) {
+        vaciarArchivo(carrosFile);
+        try (BufferedReader reader = new BufferedReader(new FileReader(usuariosFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 2) {
+                    String usuario = parts[0].trim(); // nombre de usuario
+                    String idUsuario = parts[1].trim(); // id de usuario
+
+                    String vehiculosFile = "vehiculos" + usuario + ".txt";
+
+                    // Copiar contenido de vehiculosFile a carrosFile
+                    copiarContenidoArchivo(vehiculosFile, carrosFile);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo de usuarios " + usuariosFile + ": " + e.getMessage());
+        }
+    }
+
+    // Función para copiar contenido de un archivo a otro
+    private static void copiarContenidoArchivo(String origen, String destino) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(origen));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(destino, true))) { // true para append
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(line);
+                writer.newLine();
+            }
+            writer.flush(); // Asegurarse de que todos los datos se escriben en el archivo
+        } catch (IOException e) {
+            System.err.println("Error al copiar contenido de " + origen + " a " + destino + ": " + e.getMessage());
+        }
+    }
+
     public  String formatoGuardarCarro(Vehiculo vh) {
             StringBuilder texto = new StringBuilder();
             texto.append(vh.id).append(",")

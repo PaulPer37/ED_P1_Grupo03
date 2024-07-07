@@ -5,6 +5,8 @@
 package ec.edu.espol.ed_p1_grupo03;
 
 import static ec.edu.espol.ed_p1_grupo03.Vehiculo.cargarListaCarros;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -156,8 +158,23 @@ public class RemoverController implements Initializable {
         App.setRoot("Eleccion");
     }
     @FXML
-    private void borrar(MouseEvent event) {
-        
+    public void borrar(MouseEvent event) {
+        if (vehiculo != null) {
+            listacarros.remove(vehiculo);
+            usuario.getVehiculos().remove(vehiculo);
+            cambovehiculos.getItems().remove(cambovehiculos.getSelectionModel().getSelectedItem());
+            vehiculoMap.remove(cambovehiculos.getSelectionModel().getSelectedItem());
+            usuario.guardarVehiculos();
+            Vehiculo.copiarVehiculosDeUsuarios("usuarios.txt", "carros.txt");
+            limpiarDetalles();
+        }
     }
-    
+    private void limpiarDetalles() {
+        marcaDetalle.setText("");
+        modeloDetalle.setText("");
+        transmisionDetalle.setText("");
+        añoDetalle.setText("");
+        precioDetalle.setText("");
+        listaImagenes.setImage(null);
+    }
 }

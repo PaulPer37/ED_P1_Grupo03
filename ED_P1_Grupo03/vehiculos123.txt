@@ -1,8 +1,2 @@
-id=17,Marca='21',Modelo='1',Año=0,Precio=21.0,Kilometraje=1,Motor='1',Transmision='null',Peso=0.0,Ubicacion='1',Fotos=,Servicios=
-id=18,Marca='3',Modelo='3',Año=0,Precio=3.0,Kilometraje=3,Motor='3',Transmision='null',Peso=0.0,Ubicacion='3',Fotos=,Servicios=
-id=24,Marca='30',Modelo='2',Año=0,Precio=30.0,Kilometraje=40,Motor='23',Transmision='null',Peso=0.0,Ubicacion='23',Fotos=,Servicios=
-id=25,Marca='33',Modelo='33',Año=0,Precio=33.0,Kilometraje=33,Motor='33',Transmision='null',Peso=0.0,Ubicacion='33',Fotos=,Servicios=
-id=26,Marca='1',Modelo='1',Año=0,Precio=1.0,Kilometraje=1,Motor='1',Transmision='1',Peso=1.0,Ubicacion='1',Fotos=ec/edu/espol/carros/toyotacorolla20151.jpeg,Servicios=
-id=27,Marca='22',Modelo='22',Año=0,Precio=22.0,Kilometraje=22,Motor='22',Transmision='22',Peso=22.0,Ubicacion='22',Fotos=ec/edu/espol/carros/SubaruImpreza20151.jpeg,Servicios=21|s|REPARACION|22.0
-id=30,Marca='mercedes',Modelo='200',Año=322,Precio=500.0,Kilometraje=244,Motor='333',Transmision='23233r',Peso=2323.0,Ubicacion='gua',Fotos=,Servicios=
+id=30,Marca='mercedes',Modelo='200',Año=0,Precio=500.0,Kilometraje=244,Motor='333',Transmision='23233r',Peso=2323.0,Ubicacion='gua',Fotos=,Servicios=
 id=31,Marca='00',Modelo='000',Año=0,Precio=0.0,Kilometraje=0,Motor='00',Transmision='00',Peso=0.0,Ubicacion='00',Fotos=ec/edu/espol/carros/ChevroletMalibu20162.jpeg;ec/edu/espol/carros/HondaCivic20181.jpeg,Servicios=
