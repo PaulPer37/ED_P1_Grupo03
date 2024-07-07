@@ -122,11 +122,11 @@ public class EditarController implements Initializable {
         int kilometraje = Integer.parseInt(kilometro.getText());
         String motor = motorStr.getText();
         double peso = Double.parseDouble(pesoDour.getText());
-
+        //LinkedList<Servicio> serv =App.getVehiculoSelect().getServicio();
         Vehiculo veditado = new Vehiculo(
             vehiculoSeleccionado.getId(), marca, modelo, year, precio, 
             kilometraje, motor, transmision, peso, 
-            ubicacion, vehiculoSeleccionado.getFotos(), App.getListaServicio());
+            ubicacion, vehiculoSeleccionado.getFotos(),  App.getVehiculoSelect().getServicio());
         
         v.editarVehiculo(veditado, "vehiculos" + usuario.getID() + ".txt", usuario);
         

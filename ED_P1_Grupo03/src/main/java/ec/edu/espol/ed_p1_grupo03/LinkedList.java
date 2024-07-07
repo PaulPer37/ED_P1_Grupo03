@@ -172,16 +172,32 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public E remove(int index) {
-        NodeList<E> current = header;
-        for (int i = 0; i < index; i++) {
-            current = current.getNext();
-            if (current == null || current.getNext() == null) {
-                throw new IndexOutOfBoundsException("Índice fuera de rango");
-            }
+         if (header == null) {
+        // La lista está vacía, no hay nada que eliminar
+        return null;
         }
-        E removedData = current.getNext().getContent();
+        // Caso especial: Eliminar el primer elemento
+        if (index == 0) {
+            E content = header.getContent();
+            header = header.getNext();
+            return content;
+        }
+        NodeList<E> current = header;
+        int currentIndex = 0;
+        // Avanzar hasta el nodo anterior al índice que queremos eliminar
+        while (current != null && currentIndex < index - 1) {
+            current = current.getNext();
+            currentIndex++;
+        }
+        // Si current es null o no encontramos el índice válido, retornar null o manejar según necesites
+        if (current == null || current.getNext() == null) {
+            return null;
+        }
+        // Guardar el contenido del nodo que se va a eliminar
+        E content = current.getNext().getContent();
+        // Eliminar el nodo actualizando los enlaces
         current.setNext(current.getNext().getNext());
-        return removedData;
+        return content;
     }
 
     @Override

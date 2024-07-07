@@ -139,7 +139,7 @@ public class Vehiculo  {
         this.ubicacion = ubicación;
     }
 
-    public List<Servicio> getServicio() {
+    public LinkedList<Servicio> getServicio() {
         return servicio;
     }
 

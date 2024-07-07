@@ -45,6 +45,14 @@ public class EditarServicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         vehiculo = App.getVehiculoSelect();
+        volver.setOnMouseClicked(event -> {
+            try {
+                volverLink(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        
         List<Servicio> servicios = vehiculo.getServicio();
         servicioMap = new HashMap<>();
         for (int i = 0; i < servicios.size(); i++) {
@@ -56,15 +64,7 @@ public class EditarServicioController implements Initializable {
         TipoServ.getItems().setAll(TipoServicio.values());
         serviciosUser.setOnAction(event -> seleccionarServicio());
         habilitarCamposEdicion(false);
-        
-         volver.setOnMouseClicked(event -> {
-            try {
-                volverLink(event);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
-        
+           
     } 
 
     public void seleccionarServicio(){
@@ -76,7 +76,7 @@ public class EditarServicioController implements Initializable {
             costo.setText(Double.toString(sevSeleccionado.getCosto()));
             
             habilitarCamposEdicion(true);
-            
+            TipoServ.setValue(sevSeleccionado.getTiposervicio());
         } else{
             limpiarCamposEdicion();
             habilitarCamposEdicion(false);
@@ -101,6 +101,7 @@ public class EditarServicioController implements Initializable {
         sevSeleccionado.setDescripion(decrip.getText());
         sevSeleccionado.setFecha(fecha.getText());
         sevSeleccionado.setCosto(Double.parseDouble(costo.getText()));
+        /*
         for (int i = 0; i < vehiculo.getServicio().size(); i++) {
             if (vehiculo.getServicio().get(i).equals(sevSeleccionado)) {
                 vehiculo.getServicio().remove(i);
@@ -108,13 +109,15 @@ public class EditarServicioController implements Initializable {
                 break;
             }
         }
-        
-        
+        */
+        serviciosUser.getItems().clear();
+        for (Servicio s : vehiculo.getServicio()) {
+            serviciosUser.getItems().add(s.getDescripion());
+        }
         TipoServ.getSelectionModel().clearSelection();
         serviciosUser.getSelectionModel().clearSelection();
         limpiarCamposEdicion();
-        
-        
+
         }catch(NumberFormatException e){
             System.out.println(e.getMessage());
         }
