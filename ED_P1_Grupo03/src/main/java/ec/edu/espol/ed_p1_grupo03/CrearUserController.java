@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -36,6 +37,8 @@ public class CrearUserController implements Initializable {
 
     @FXML
     private Text volver;
+    @FXML
+    private Button crearuser;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,7 +78,6 @@ public class CrearUserController implements Initializable {
         return true;
     }
 
-    @FXML
     void volverLink(MouseEvent event) throws IOException {
         App.setRoot("Inicio");
     }
