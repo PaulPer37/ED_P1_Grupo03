@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -68,6 +69,8 @@ public class ComprarController implements Initializable {
     private CheckBox Mantenimiento;
     @FXML
     private CheckBox Reparacion;
+    @FXML
+    private Button favoritos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,6 +100,7 @@ public class ComprarController implements Initializable {
         mostrarvehiculo();
 
         resetButton.setOnMouseClicked(event -> resetFiltros()); // Configura el evento del botón reset
+        favoritos.setOnMouseClicked(event -> filtrarPorMarcasFavoritas());
     }
 
     void volverLink(MouseEvent event) throws IOException {
@@ -265,5 +269,38 @@ public class ComprarController implements Initializable {
         // Desmarcar los CheckBox Mantenimiento y Reparacion
         Mantenimiento.setSelected(false);
         Reparacion.setSelected(false);
+    }
+
+    @FXML
+    private void filtrarPorMarcasFavoritas() {
+        List<String> marcasFavoritas = leerMarcasFavoritas("favoritos"+App.getUsuarioActual().getID()+".txt");
+        LinkedList<Vehiculo> filtrados = new LinkedList<>();
+        for (Vehiculo vehiculo : vehiculosOriginales) {
+            for (String marcaFavorita : marcasFavoritas) {
+                if (vehiculo.getMarca().equals(marcaFavorita)) {
+                    filtrados.addLast(vehiculo);
+                    break;
+                }
+            }
+        }
+        vehiculos = filtrados;
+        pagina = 0;
+        mostrarvehiculo();
+    }
+
+    private LinkedList<String> leerMarcasFavoritas(String archivo) {
+        LinkedList<String> marcasFavoritas = new LinkedList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String marcaFavorita = linea.trim();
+                if (!marcaFavorita.isEmpty()) {
+                    marcasFavoritas.addLast(marcaFavorita);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return marcasFavoritas;
     }
 }

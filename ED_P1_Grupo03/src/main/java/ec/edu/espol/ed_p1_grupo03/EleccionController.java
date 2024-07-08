@@ -9,12 +9,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -36,6 +41,8 @@ public class EleccionController implements Initializable {
     private Text cerrar;
     @FXML
     private Pane remover;
+    @FXML
+    private Button favoritos;
 
     
     @Override
@@ -76,26 +83,44 @@ public class EleccionController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        favoritos.setOnMouseClicked(event -> {
+            try {
+                añadirFavorito(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }  
 
-    @FXML
     void venderLink(MouseEvent event) throws IOException {
         App.setRoot("Vender");
     }
-    @FXML
     void comprarLink(MouseEvent event) throws IOException {
         App.setRoot("Comprar");
     }
-    @FXML
     void cerrarLink(MouseEvent event) throws IOException {
         App.setRoot("Inicio");
     }
-    @FXML
     void editarLink(MouseEvent event) throws IOException {
         App.setRoot("Editar");
     }
-    @FXML
     void removerLink(MouseEvent event) throws IOException {
         App.setRoot("Remover");
+    }
+    @FXML
+    private void añadirFavorito(MouseEvent event) throws IOException {
+        App.setEstado("Eleccion");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Favorito.fxml"));
+        Parent root = fxmlLoader.load();
+
+        // Crea una nueva escena y un nuevo Stage (ventana)
+        Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setTitle("Añadir Favorito");
+        newStage.setScene(scene);
+
+        // Muestra la nueva ventana
+        newStage.show();
+        
     }
 }
