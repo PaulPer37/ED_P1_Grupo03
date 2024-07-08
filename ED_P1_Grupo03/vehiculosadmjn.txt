@@ -1,2 +1,3 @@
 id=19,Marca='McLaren',Modelo='core',Año=2023,Precio=21.0,Kilometraje=21,Motor='21L',Transmision='Manual',Peso=0.0,Ubicacion='Quito',Fotos=,Servicios=2023|Cambio de parabrisas|REPARACION|60.5;23-12-2023|Cambio de aceite|MANTENIMIENTO|65.5
 id=20,Marca='Ferrari',Modelo='323',Año=2000,Precio=1.0,Kilometraje=13221,Motor='45',Transmision='Manual',Peso=1.0,Ubicacion='Quito',Fotos=,Servicios=2023|Cambio de parabrisas|REPARACION|60.5;23|Cambio de aceite|MANTENIMIENTO|60.0
+id=32,Marca='Chevrolet',Modelo='aveo',Año=2023,Precio=10000.0,Kilometraje=123,Motor='12',Transmision='Manual',Peso=143.0,Ubicacion='Quito',Fotos=ec/edu/espol/carros/chevrolet-aveo.jpeg;ec/edu/espol/carros/chevrolet-aveo.jpeg,Servicios=10-10-2024|Cambio aceite|REPARACION|30.0

@@ -44,13 +44,7 @@ public class EditarServicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         vehiculo = App.getVehiculoSelect();
-        volver.setOnMouseClicked(event -> {
-            try {
-                volverLink(event);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+       
         
         List<Servicio> servicios = vehiculo.getServicio();
         servicioMap = new HashMap<>();

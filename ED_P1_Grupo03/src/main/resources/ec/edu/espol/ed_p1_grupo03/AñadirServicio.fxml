@@ -55,10 +55,5 @@
             <Font name="Serif Regular" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="volver" layoutX="47.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volver">
-         <font>
-            <Font name="Serif Regular" size="14.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>

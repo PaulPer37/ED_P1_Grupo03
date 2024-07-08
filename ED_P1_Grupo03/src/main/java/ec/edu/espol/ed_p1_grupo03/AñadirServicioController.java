@@ -34,7 +34,6 @@ public class AñadirServicioController implements Initializable {
     private TextField descripcion;
     @FXML
     private TextField costo;
-    @FXML
     private Text volver;
     private Servicio servicioAñadido;
     private TextArea texto1;
@@ -47,7 +46,7 @@ public class AñadirServicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
+        /*
         volver.setOnMouseClicked(event -> {
             try {
                 volverLink(event);
@@ -55,6 +54,7 @@ public class AñadirServicioController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        */
         tiposerv.getItems().setAll(TipoServicio.values());
         
     }
