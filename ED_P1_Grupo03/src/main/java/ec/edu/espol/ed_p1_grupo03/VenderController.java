@@ -163,6 +163,8 @@ public class VenderController implements Initializable {
             limpiarCampos();
             App.setListaServicio(new LinkedList<>());
             System.out.println("Vehículo creado y guardado correctamente");
+            fotos = new LinkedList<>();
+            System.out.println("Vehículo creado y guardado correctamente");
 
         } catch (NumberFormatException e) {
             // Manejar la excepción si hay un error en la conversión de texto a número

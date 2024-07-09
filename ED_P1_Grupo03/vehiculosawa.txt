@@ -1,0 +1,2 @@
+id=36,Marca='chevrolet',Modelo='aveo',Año=2009,Precio=1000.0,Kilometraje=100000,Motor='aveo',Transmision='manual',Peso=1000.0,Ubicacion='guayaquil',Fotos=ec/edu/espol/carros/toyotacorolla20152.jpeg;ec/edu/espol/carros/NissanAltima20193.jpeg;ec/edu/espol/carros/HyundaiElantra20162.jpeg,Servicios=2004|mantenimiento|MANTENIMIENTO|300.0
+id=37,Marca='picanto',Modelo='picanto',Año=2010,Precio=100000.0,Kilometraje=0,Motor='picanto',Transmision='semiautomatica',Peso=5000.0,Ubicacion='cuenca',Fotos=ec/edu/espol/carros/SubaruImpreza20152.jpeg,Servicios=
