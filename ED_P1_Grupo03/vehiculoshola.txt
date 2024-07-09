@@ -1,0 +1,1 @@
+id=33,Marca='mercedes',Modelo='rojo',Año=2017,Precio=700.0,Kilometraje=700,Motor='bueno',Transmision='radio gaga',Peso=705.6,Ubicacion='quito',Fotos=ec/edu/espol/carros/AstonMartin V12.jpeg;ec/edu/espol/carros/ChevroletMalibu20162.jpeg,Servicios=20/10/2019|Tiene buenas las luces|MANTENIMIENTO|600.0
