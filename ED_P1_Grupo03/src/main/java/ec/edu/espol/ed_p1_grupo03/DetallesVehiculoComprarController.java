@@ -50,15 +50,19 @@ public class DetallesVehiculoComprarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         vehiculo = App.getCarrocomprar(); // Obtener el vehículo desde tu método getSeleccionado()
+
         if (vehiculo != null) {
             imagenes = vehiculo.getFotos(); // Obtener las imágenes del vehículo si vehiculo no es nulo
-            if (!imagenes.isEmpty()) {
+            if (imagenes != null && !imagenes.isEmpty()) {
                 mostrarDetalles();
                 mostrarImagen();
             } else {
-                System.err.println("El vehículo no tiene imágenes.");
+                System.err.println("El vehículo no tiene imágenes o la lista de imágenes es nula.");
             }
+        } else {
+            System.err.println("El vehículo seleccionado es nulo.");
         }
+
         volver.setOnMouseClicked(event -> {
             try {
                 volverLink(event);
@@ -66,15 +70,18 @@ public class DetallesVehiculoComprarController implements Initializable {
                 ex.printStackTrace();
             }
         });
-
     }
 
     private void mostrarDetalles() {
-        marcaDetalle.setText(vehiculo.getMarca());
-        modeloDetalle.setText(vehiculo.getModelo());
-        transmisionDetalle.setText(vehiculo.getTransmision());
-        añoDetalle.setText(String.valueOf(vehiculo.getYear()));
-        precioDetalle.setText("$" + vehiculo.getPrecio());
+        if (vehiculo != null) {
+            marcaDetalle.setText(vehiculo.getMarca());
+            modeloDetalle.setText(vehiculo.getModelo());
+            transmisionDetalle.setText(vehiculo.getTransmision());
+            añoDetalle.setText(String.valueOf(vehiculo.getYear()));
+            precioDetalle.setText("$" + vehiculo.getPrecio());
+        } else {
+            System.err.println("El vehículo es nulo en mostrarDetalles.");
+        }
     }
 
     @FXML
@@ -82,6 +89,8 @@ public class DetallesVehiculoComprarController implements Initializable {
         if ((pagina + 1) < imagenes.size()) {
             pagina++;
             mostrarImagen();
+        } else {
+            System.err.println("No hay más imágenes para mostrar.");
         }
     }
 
@@ -90,6 +99,8 @@ public class DetallesVehiculoComprarController implements Initializable {
         if (pagina > 0) {
             pagina--;
             mostrarImagen();
+        } else {
+            System.err.println("No hay imágenes anteriores para mostrar.");
         }
     }
 
@@ -110,6 +121,7 @@ public class DetallesVehiculoComprarController implements Initializable {
             System.err.println("Índice de imagen fuera de límites: " + pagina);
         }
     }
+
     @FXML
     void volverLink(MouseEvent event) throws IOException {
         App.setRoot("Comprar");

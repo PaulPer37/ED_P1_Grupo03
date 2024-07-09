@@ -1,2 +1,0 @@
-id=30,Marca='mercedes',Modelo='200',Año=0,Precio=500.0,Kilometraje=244,Motor='333',Transmision='23233r',Peso=2323.0,Ubicacion='gua',Fotos=,Servicios=
-id=31,Marca='00',Modelo='000',Año=0,Precio=0.0,Kilometraje=0,Motor='00',Transmision='00',Peso=0.0,Ubicacion='00',Fotos=ec/edu/espol/carros/ChevroletMalibu20162.jpeg;ec/edu/espol/carros/HondaCivic20181.jpeg,Servicios=
