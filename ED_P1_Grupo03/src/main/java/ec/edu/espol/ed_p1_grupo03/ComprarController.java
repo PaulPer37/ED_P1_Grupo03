@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -132,6 +133,22 @@ public class ComprarController implements Initializable {
         String ordenarPor = orden.getValue();
         boolean seleccionarMantenimiento = Mantenimiento.isSelected();
         boolean seleccionarReparacion = Reparacion.isSelected();
+        
+        Comparator<String> cmp = new Comparator<>(){
+            @Override
+            public int compare(String s1, String s2) {
+                if (s1 == null && s2 == null) {
+                    return 0;
+                }
+                if (s1 == null) {
+                    return -1;
+                }
+                if (s2 == null) {
+                    return 1;
+                }
+                return s1.compareTo(s2);
+                }   
+        };
 
         LinkedList<Vehiculo> filtrados = new LinkedList<>();
         for (Vehiculo vehiculo : vehiculos) {
@@ -163,10 +180,10 @@ public class ComprarController implements Initializable {
                     pasaFiltro = false;
                 }
             }
-            if (marca != null && !marca.equals(vehiculo.getMarca())) {
+            if (marca != null && !(cmp.compare(marca, vehiculo.getMarca())==0)) {
                 pasaFiltro = false;
             }
-            if (modelo != null && !modelo.equals(vehiculo.getModelo())) {
+            if (modelo != null && !(cmp.compare(modelo, vehiculo.getModelo())==0)) {
                 pasaFiltro = false;
             }
             if (precioMin != null && Double.parseDouble(precioMin) > vehiculo.getPrecio()) {
@@ -186,10 +203,10 @@ public class ComprarController implements Initializable {
                 filtrados.addLast(vehiculo);
             }
         }
-
-        if ("Precio".equals(ordenarPor)) {
+        
+        if (cmp.compare("Precio", ordenarPor)==0) {
             filtrados.sort((v1, v2) -> Double.compare(v1.getPrecio(), v2.getPrecio()));
-        } else if ("Kilometraje".equals(ordenarPor)) {
+        } else if (cmp.compare("Kilometraje", ordenarPor)==0) {
             filtrados.sort((v1, v2) -> Integer.compare(v1.getKilometraje(), v2.getKilometraje()));
         }
 
@@ -275,9 +292,16 @@ public class ComprarController implements Initializable {
     private void filtrarPorMarcasFavoritas() {
         List<String> marcasFavoritas = leerMarcasFavoritas("favoritos"+App.getUsuarioActual().getID()+".txt");
         LinkedList<Vehiculo> filtrados = new LinkedList<>();
+        
+        Comparator<String> comp= new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareTo(s2);
+            }
+        };
         for (Vehiculo vehiculo : vehiculosOriginales) {
             for (String marcaFavorita : marcasFavoritas) {
-                if (vehiculo.getMarca().equals(marcaFavorita)) {
+                if (comp.compare(vehiculo.getMarca(),marcaFavorita)==0) {
                     filtrados.addLast(vehiculo);
                     break;
                 }

@@ -6,6 +6,7 @@ package ec.edu.espol.ed_p1_grupo03;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,8 +56,15 @@ public class CrearUserController implements Initializable {
         String user = usuario.getText();
         String con = contra.getText();
         String con2 = contra2.getText();
+        
+        Comparator<String> comp = new Comparator<>() {
+            @Override
+            public int compare(String o1,String o2) {
+                return o1.compareTo(o2);
+            }
+        };
 
-        if (!con.equals(con2)) {
+        if (!(comp.compare(con, con2)==0)) {
             contra2.clear();
             System.out.println("Las contraseñas no coinciden");
             return;
@@ -71,7 +79,7 @@ public class CrearUserController implements Initializable {
             System.out.println("Nombre de usuario ya ocupado");
         }
     }
-    
+            
 
     private boolean validarcrearuser(String user) {
         

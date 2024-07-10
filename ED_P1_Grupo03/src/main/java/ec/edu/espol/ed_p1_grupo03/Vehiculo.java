@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
@@ -261,6 +262,22 @@ public String toString() {
             LinkedList<String> fotos = new LinkedList<>();
             LinkedList<Servicio> servicios = new LinkedList<>();
             
+            Comparator<String> cmp = new Comparator<>(){
+                @Override
+                public int compare(String o1, String o2) {
+                    if(o1 == null && o2 == null){
+                        return 0;
+                    }
+                    if (o1 == null){
+                        return -1;
+                    }
+                    if(o2 ==null){
+                        return 1;
+                    }
+                    return o1.compareTo(o2);
+                }
+                
+            };
             for (String parte : partes) {
                 String[] atributo = parte.split("=");
                 if (atributo.length < 2) {
@@ -292,7 +309,7 @@ public String toString() {
                         motor = value.substring(1, value.length() - 1);
                         break;
                     case "Transmision":
-                        transmision = value.equals("null") ? null : value.substring(1, value.length() - 1);
+                        transmision = cmp.compare(value, null)==0 ? null : value.substring(1, value.length() - 1);
                         break;
                     case "Peso":
                         peso = Double.parseDouble(value);
@@ -410,8 +427,14 @@ private static void parseServicios(String serviciosStr, LinkedList<Servicio> ser
 }
     public void editarVehiculo(Vehiculo veditado, String nomfile,Usuario user){
         LinkedList<Vehiculo> vehiculosUser = cargarListaCarros(nomfile);
+         Comparator<Vehiculo> comparador = new Comparator<Vehiculo>() {
+            @Override
+            public int compare(Vehiculo v1, Vehiculo v2) {
+                return v1.getId().compareTo(v2.getId());
+            }
+        };
         for(Vehiculo v : vehiculosUser){
-            if(v.id.equals(veditado.getId())){
+            if(comparador.compare(v, veditado) == 0){
                 if(veditado.getMarca() != null){
                     v.setMarca(veditado.getMarca());
                 }

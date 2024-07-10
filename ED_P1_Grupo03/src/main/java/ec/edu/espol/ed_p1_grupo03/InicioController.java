@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,6 +64,12 @@ public class InicioController implements Initializable {
     }
 
     private Usuario validarInicio(String usuario, String contra) {
+        Comparator<String> comp = new Comparator<>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareTo(s2);
+            }
+        };
         try (BufferedReader br = new BufferedReader(new FileReader("usuarios.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -70,7 +77,7 @@ public class InicioController implements Initializable {
                 if (partes.length == 2) {
                     String nombre = partes[0];
                     String password = partes[1];
-                    if (nombre.equals(usuario) && password.equals(contra)) {
+                    if (comp.compare(nombre, usuario)==0 && comp.compare(password,contra)==0) {
                         return new Usuario(nombre, password);
                     }
                 }
