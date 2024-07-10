@@ -13,6 +13,7 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
+    //diseño
     private static Vehiculo vehiculoSelect;
     private static Scene scene;
     private static Usuario usuarioActual;
