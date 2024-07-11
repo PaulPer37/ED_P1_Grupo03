@@ -32,8 +32,12 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Inicio"), 640, 480);
+         Parent root = loadFXML("Inicio");
+        scene = new Scene(root, 800, 600);
+        // Aplicar el archivo CSS a la escena
+        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setScene(scene);
+        stage.setTitle("Aplicación de Gestión de Vehículos");
         stage.show();
     }
 

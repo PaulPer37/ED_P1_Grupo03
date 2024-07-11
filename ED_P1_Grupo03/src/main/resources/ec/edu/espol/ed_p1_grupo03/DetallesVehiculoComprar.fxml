@@ -10,34 +10,37 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ec.edu.espol.ed_p1_grupo03.DetallesVehiculoComprarController">
-    
+
     <children>
         <!-- VBox para los detalles del vehículo -->
-        <VBox layoutX="59.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0">
+        <VBox layoutX="20.0" layoutY="20.0" spacing="10">
             <children>
-                <Label text="Marca" />
+                <Label text="Detalles del Vehículo" styleClass="titulo" />
+
+                <Label text="Marca:" />
                 <Label fx:id="marcaDetalle" />
-                <Label text="Modelo" />
+
+                <Label text="Modelo:" />
                 <Label fx:id="modeloDetalle" />
-                <Label text="Transmision" />
+
+                <Label text="Transmisión:" />
                 <Label fx:id="transmisionDetalle" />
-                <Label text="Año" />
+
+                <Label text="Año:" />
                 <Label fx:id="añoDetalle" />
-                <Label text="Precio" />
+
+                <Label text="Precio:" />
                 <Label fx:id="precioDetalle" />
             </children>
         </VBox>
-        
+
         <!-- Botones y otros elementos -->
-        <Button fx:id="siguiente" layoutX="372.0" layoutY="292.0" mnemonicParsing="false"
-                onAction="#siguiente" prefHeight="26.0" prefWidth="79.0" text="Siguiente" />
-        <Button fx:id="anterior" layoutX="252.0" layoutY="292.0" mnemonicParsing="false"
-                onAction="#anterior" prefHeight="26.0" prefWidth="90.0" text="Anterior" />
-        <Text fx:id="volver" fill="#29327b" layoutX="14.0" layoutY="382.0" strokeType="OUTSIDE"
-              strokeWidth="0.0" text="Volver" underline="true" />
-        
+        <Button fx:id="anterior" layoutX="20.0" layoutY="300.0" onAction="#anterior" text="Anterior" styleClass="boton" />
+        <Button fx:id="siguiente" layoutX="110.0" layoutY="300.0" onAction="#siguiente" text="Siguiente" styleClass="boton" />
+
+        <Text fx:id="volver" layoutX="20.0" layoutY="370.0" onMouseClicked="#volverLink" text="Volver" styleClass="link" />
+
         <!-- ImageView para mostrar las imágenes del vehículo -->
-        <ImageView fx:id="listaImagenes" fitHeight="150.0" fitWidth="200.0" layoutX="252.0"
-                   layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="listaImagenes" fitWidth="200.0" fitHeight="150.0" layoutX="300.0" layoutY="20.0" preserveRatio="true" />
     </children>
 </AnchorPane>
