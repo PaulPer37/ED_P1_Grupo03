@@ -52,19 +52,37 @@ public class CrearUserController implements Initializable {
         });
     }  
     @FXML
-   private void crearuser(ActionEvent event) throws IOException {
+    private void crearuser(ActionEvent event) throws IOException {
         String user = usuario.getText();
         String con = contra.getText();
         String con2 = contra2.getText();
-        
+
+        // Verificar que los campos no estén vacíos
+        if (user.isEmpty() || con.isEmpty() || con2.isEmpty()) {
+            System.out.println("Todos los campos deben ser llenados");
+            return;
+        }
+
+        // Verificar que no contengan espacios
+        if (user.contains(" ") || con.contains(" ") || con2.contains(" ")) {
+            System.out.println("No se permiten espacios en los campos");
+            return;
+        }
+
+        // Verificar que las contraseñas contengan tanto letras como números
+        if (!con.matches(".*[a-zA-Z].*") || !con.matches(".*\\d.*")) {
+            System.out.println("La contraseña debe contener tanto letras como números");
+            return;
+        }
+
         Comparator<String> comp = new Comparator<>() {
             @Override
-            public int compare(String o1,String o2) {
+            public int compare(String o1, String o2) {
                 return o1.compareTo(o2);
             }
         };
 
-        if (!(comp.compare(con, con2)==0)) {
+        if (comp.compare(con, con2) != 0) {
             contra2.clear();
             System.out.println("Las contraseñas no coinciden");
             return;
