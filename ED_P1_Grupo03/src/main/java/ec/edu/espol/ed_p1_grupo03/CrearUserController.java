@@ -24,25 +24,26 @@ import javafx.scene.text.Text;
  */
 public class CrearUserController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-        @FXML
+    @FXML
     private TextField usuario;
 
     @FXML
     private PasswordField contra;
-    
+
     @FXML
     private PasswordField contra2;
 
     @FXML
     private Text volver;
+
     @FXML
     private Button crearuser;
-    
+
+    private LinkedList<Usuario> usuarios;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        usuarios = Usuario.cargarUsuarios();
         volver.setOnMouseClicked(event -> {
             try {
                 volverLink(event);
@@ -50,7 +51,8 @@ public class CrearUserController implements Initializable {
                 ex.printStackTrace();
             }
         });
-    }  
+    }
+
     @FXML
     private void crearuser(ActionEvent event) throws IOException {
         String user = usuario.getText();
@@ -97,10 +99,13 @@ public class CrearUserController implements Initializable {
             System.out.println("Nombre de usuario ya ocupado");
         }
     }
-            
 
     private boolean validarcrearuser(String user) {
-        
+        for (Usuario usuario : usuarios) {
+            if (usuario.getID().equals(user)) {
+                return false;
+            }
+        }
         return true;
     }
 
