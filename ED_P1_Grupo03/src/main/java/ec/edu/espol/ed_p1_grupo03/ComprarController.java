@@ -312,7 +312,7 @@ public class ComprarController implements Initializable {
         mostrarvehiculo();
     }
 
-    private LinkedList<String> leerMarcasFavoritas(String archivo) {
+    public static LinkedList<String>  leerMarcasFavoritas(String archivo) {
         LinkedList<String> marcasFavoritas = new LinkedList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;

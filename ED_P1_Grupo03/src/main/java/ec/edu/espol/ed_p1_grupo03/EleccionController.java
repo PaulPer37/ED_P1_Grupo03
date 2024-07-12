@@ -43,6 +43,8 @@ public class EleccionController implements Initializable {
     private Pane remover;
     @FXML
     private Button favoritos;
+    @FXML
+    private Button eliminar;
 
     
     @Override
@@ -90,6 +92,13 @@ public class EleccionController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        eliminar.setOnMouseClicked(event -> {
+            try {
+                eliminarFavorito(event);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }  
 
     void venderLink(MouseEvent event) throws IOException {
@@ -107,7 +116,6 @@ public class EleccionController implements Initializable {
     void removerLink(MouseEvent event) throws IOException {
         App.setRoot("Remover");
     }
-    @FXML
     private void añadirFavorito(MouseEvent event) throws IOException {
         App.setEstado("Eleccion");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Favorito.fxml"));
@@ -117,6 +125,21 @@ public class EleccionController implements Initializable {
         Scene scene = new Scene(root);
         Stage newStage = new Stage();
         newStage.setTitle("Añadir Favorito");
+        newStage.setScene(scene);
+
+        // Muestra la nueva ventana
+        newStage.show();
+        
+    }
+    private void eliminarFavorito(MouseEvent event) throws IOException {
+        App.setEstado("Eleccion");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("EliminarFavorito.fxml"));
+        Parent root = fxmlLoader.load();
+
+        // Crea una nueva escena y un nuevo Stage (ventana)
+        Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setTitle("Favoritos");
         newStage.setScene(scene);
 
         // Muestra la nueva ventana
