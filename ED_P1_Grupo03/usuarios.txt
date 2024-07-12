@@ -5,3 +5,4 @@ admjn,admin
 awa,awa
 dd,123
 usuario,123pancho,casa123
+usernuevo,casa123

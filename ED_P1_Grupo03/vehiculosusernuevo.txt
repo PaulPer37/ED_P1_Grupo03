@@ -1,0 +1,1 @@
+id=40,Marca='mercedes',Modelo='manual',Año=2006,Precio=212.0,Kilometraje=200,Motor='202',Transmision='20202',Peso=20202.0,Ubicacion='guay',Fotos=ec/edu/espol/carros/ChevroletMalibu20161.jpeg,Servicios=212|si|MANTENIMIENTO|1212.0;27|llantass|REPARACION|212.0

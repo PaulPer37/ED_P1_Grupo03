@@ -6,15 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="361.0" prefWidth="495.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.EliminarFavoritoController">
+<AnchorPane id="AnchorPane" prefHeight="361.0" prefWidth="495.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.ed_p1_grupo03.EliminarFavoritoController">
    <children>
       <ListView fx:id="favoritos" layoutX="123.0" layoutY="33.0" prefHeight="251.0" prefWidth="249.0" />
-      <Button fx:id="EliminarMarca" layoutX="211.0" layoutY="300.0" mnemonicParsing="false" text="Eliminar">
+      <Button fx:id="EliminarMarca" layoutX="211.0" layoutY="300.0" mnemonicParsing="false" styleClass="boton" text="Eliminar">
          <font>
             <Font size="15.0" />
          </font>
          <effect>
-            <ColorAdjust hue="-0.19" />
+            <ColorAdjust hue="0.86" saturation="-0.24" />
          </effect>
       </Button>
    </children>
