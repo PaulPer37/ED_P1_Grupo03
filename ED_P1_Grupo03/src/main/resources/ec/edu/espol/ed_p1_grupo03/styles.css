@@ -1,37 +1,32 @@
 .root {
     -fx-font-family: 'Arial';
-    -fx-background-color: #F8F8FF; /* Fondo más suave */
+    -fx-background-color: #F8F8FF;
 }
 
-/* Estilos para Labels generales */
 .label {
-    -fx-font-size: 16px; /* Texto estándar */
+    -fx-font-size: 16px;
     -fx-text-fill: #333;
-    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-font-weight: bold;
 }
-
 
 .labelInicio {
-    -fx-text-fill: #007BFF; /* Color azul para Labels de elección */
+    -fx-text-fill: #007BFF;
 }
-
-/* Estilos para Labels de inicio */
-
 
 .text-field, .password-field {
     -fx-pref-width: 200px;
     -fx-background-color: #FFFFFF;
-    -fx-border-color: #D3D3D3; /* Borde gris claro */
-    -fx-border-radius: 5px; /* Bordes redondeados */
-    -fx-padding: 5px; /* Espacio interno */
+    -fx-border-color: #D3D3D3;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
 }
 
 .button {
     -fx-background-color: #0078d7;
     -fx-text-fill: white;
     -fx-font-size: 14px;
-    -fx-padding: 10px 20px; /* Espacio interno más grande */
-    -fx-border-radius: 5px; /* Bordes redondeados */
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
 }
 
 .button:hover {
@@ -46,14 +41,14 @@
 
 .text:hover {
     -fx-underline: true;
-    -fx-text-fill: #005a9e; /* Cambio de color al pasar el mouse */
+    -fx-text-fill: #005a9e;
 }
 
 .pane {
-    -fx-background-radius: 10px; /* Bordes redondeados */
-    -fx-padding: 10px; /* Espacio interno */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5); /* Sombra ligera */
-    -fx-transition: all 0.3s ease; /* Transición suave */
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+    -fx-transition: all 0.3s ease;
 }
 
 .vender {
@@ -61,8 +56,8 @@
 }
 
 .vender:hover {
-    -fx-background-color: #87CEEB; /* Cambio de color al pasar el mouse */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10); /* Sombra más intensa */
+    -fx-background-color: #87CEEB;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10);
 }
 
 .comprar {
@@ -70,8 +65,8 @@
 }
 
 .comprar:hover {
-    -fx-background-color: #FFC107; /* Cambio de color al pasar el mouse */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10); /* Sombra más intensa */
+    -fx-background-color: #FFC107;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10);
 }
 
 .editar {
@@ -79,8 +74,8 @@
 }
 
 .editar:hover {
-    -fx-background-color: #7FBF7F; /* Cambio de color al pasar el mouse */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10); /* Sombra más intensa */
+    -fx-background-color: #7FBF7F;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10);
 }
 
 .remover {
@@ -88,8 +83,8 @@
 }
 
 .remover:hover {
-    -fx-background-color: #B22222; /* Cambio de color al pasar el mouse */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10); /* Sombra más intensa */
+    -fx-background-color: #B22222;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 10);
 }
 
 .cerrar {
@@ -100,111 +95,98 @@
 
 .cerrar:hover {
     -fx-underline: true;
-    -fx-text-fill: #2a2771; /* Cambio de color al pasar el mouse */
+    -fx-text-fill: #2a2771;
 }
+
 #favoritos {
-    -fx-background-color: #4CAF50; /* Verde */
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 
-/* Estilo para el botón de "Seleccionar" */
 #seleccionar {
-    -fx-background-color: #007BFF; /* Azul */
+    -fx-background-color: #007BFF;
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 
-/* Estilo para el botón de "Anterior" y "Siguiente" */
 #anterior, #siguiente {
-    -fx-background-color: #DC3545; /* Rojo */
+    -fx-background-color: #DC3545;
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 
-/* Estilo para el botón de "Reset" */
 #resetButton {
-    -fx-background-color: #6C757D; /* Gris */
+    -fx-background-color: #6C757D;
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 
-/* Estilos para los ComboBox */
 .combo-box {
     -fx-font-size: 14px;
 }
 
-/* Estilos para los CheckBox */
 .check-box {
     -fx-font-size: 14px;
 }
 
-/* Estilo para el ListView */
 .list-view {
     -fx-font-size: 14px;
-    -fx-text-fill: black; /* Color de texto negro */
-    
+    -fx-text-fill: black;
 }
 
-/* Efecto de resaltado en el ListView al pasar el mouse */
 .list-view .list-cell:hover {
-    -fx-background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+    -fx-background-color: #f0f0f0;
 }
 
-/* Estilo para el Text "Volver" */
 #volver {
     -fx-font-size: 14px;
-    -fx-fill: #007BFF; /* Color azul para el texto */
+    -fx-fill: #007BFF;
 }
 
-
-/* Estilo para los elementos del VBox */
 .vbox > * {
-    -fx-spacing: 10px; /* Espaciado entre elementos */
+    -fx-spacing: 10px;
 }
 
-/* Estilo para los botones de paginación */
 #anterior, #siguiente {
-    -fx-background-color: #007BFF; /* Azul */
+    -fx-background-color: #007BFF;
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 
-/* Efecto de resaltado en los botones de paginación al pasar el mouse */
 #anterior:hover, #siguiente:hover {
-    -fx-background-color: #0056b3; /* Azul más oscuro */
+    -fx-background-color: #0056b3;
 }
 
-/* Estilo para los CheckBox */
 .check-box {
     -fx-font-size: 14px;
-    -fx-text-fill: #007BFF; /* Color azul para el texto */
+    -fx-text-fill: #007BFF;
 }
+
 .titulo {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: #333;
 }
 
-
 .boton {
-    -fx-background-color: #0078d7; /* Azul */
+    -fx-background-color: #0078d7;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-pref-width: 90px;
 }
 
 .boton:hover {
-    -fx-background-color: #005a9e; /* Azul oscuro al pasar el mouse */
+    -fx-background-color: #005a9e;
 }
 
 .link {
     -fx-cursor: hand;
     -fx-font-size: 14px;
-    -fx-fill: #0078d7; /* Azul */
+    -fx-fill: #0078d7;
 }
 
 .link:hover {
     -fx-underline: true;
-    -fx-fill: #005a9e; /* Azul oscuro al pasar el mouse */
+    -fx-fill: #005a9e;
 }
